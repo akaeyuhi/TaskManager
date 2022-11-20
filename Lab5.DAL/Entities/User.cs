@@ -8,8 +8,8 @@ public class User
 
     public Task? CurrentTask { get; set; }
 
-    public bool Busyness { get; set; } = false;
+    public bool Busyness { get; set; }
 
     public int? ProjectId { get; set; }
-    public Project Project { get; set; }
+    public virtual Project Project { get; set; }
 }
