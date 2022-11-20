@@ -1,4 +1,4 @@
-namespace Lab5.DAL.Models;
+namespace Lab5.DAL.Entities;
 
 public class Task
 {
@@ -10,7 +10,7 @@ public class Task
 
     public int? UserId { get; set; }
     public virtual User User { get; set; }
-    
+
     public int? ProjectId { get; set; }
     public virtual Project Project { get; set; }
 }
