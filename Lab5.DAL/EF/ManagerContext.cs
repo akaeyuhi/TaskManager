@@ -4,9 +4,9 @@ using Task = Lab5.DAL.Entities.Task;
 
 namespace Lab5.DAL.EF;
 
-public class ApplicationContext : DbContext
+public class ManagerContext : DbContext
 {
-    public ApplicationContext()
+    public ManagerContext()
     {
         Database.EnsureCreated();
     }
