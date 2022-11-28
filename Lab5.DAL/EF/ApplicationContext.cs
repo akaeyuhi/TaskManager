@@ -1,20 +1,22 @@
 using Lab5.DAL.Entities;
-using Database = System.Data.Entity.Database;
-using DbContext = System.Data.Entity.DbContext;
+using Microsoft.EntityFrameworkCore;
 using Task = Lab5.DAL.Entities.Task;
 
 namespace Lab5.DAL.EF;
 
 public class ApplicationContext : DbContext
 {
-    public System.Data.Entity.DbSet<Task> Tasks { get; set; }
-    public System.Data.Entity.DbSet<User> Users { get; set; }
-    public System.Data.Entity.DbSet<Project> Projects { get; set; }
-
-    static ApplicationContext()
+    public ApplicationContext()
     {
-        Database.SetInitializer(new ApplicationContextInitializer());
+        Database.EnsureCreated();
     }
- 
-    public ApplicationContext(string connectionString): base(connectionString) {}
+
+    public DbSet<Task> Tasks { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Project> Projects { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql("Host=localhost;Port=5433;Database=labdatabase;Username=postgres;admin");
+    }
 }

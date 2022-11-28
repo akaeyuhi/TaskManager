@@ -4,9 +4,9 @@ using Task = Lab5.DAL.Entities.Task;
 
 namespace Lab5.DAL.EF;
 
-public class ApplicationContextInitializer : DropCreateDatabaseAlways<ApplicationContext>
+public class ApplicationContextInitializer
 {
-    protected override void Seed(ApplicationContext db)
+    protected void Seed(ApplicationContext db)
     {
         var user1 = new User
         {
@@ -53,16 +53,10 @@ public class ApplicationContextInitializer : DropCreateDatabaseAlways<Applicatio
 
         var project = new Project
         {
-            ProjectName = "Test task",
+            ProjectName = "Test task"
         };
-        foreach (var task in db.Tasks)
-        {
-            project.Tasks?.Add(task);
-        }
-        
-        foreach (var user in db.Users)
-        {
-            project.Users?.Add(user);
-        }
+        foreach (var task in db.Tasks) project.Tasks?.Add(task);
+
+        foreach (var user in db.Users) project.Users?.Add(user);
     }
 }
