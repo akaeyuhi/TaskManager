@@ -6,22 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lab5.DAL.Repositories;
 
-public class UserRepository : IRepository<User>, IDisposable
+public class UserRepository : IRepository<User>
 {
-    private readonly ApplicationContext _context;
-
-    private bool _disposed;
+    private readonly ManagerContext _context;
 
 
-    public UserRepository(ApplicationContext context)
+    public UserRepository(ManagerContext context)
     {
         _context = context;
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
     }
 
     public IEnumerable<User> GetAll()
@@ -55,13 +47,5 @@ public class UserRepository : IRepository<User>, IDisposable
     public void Save()
     {
         _context.SaveChanges();
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!_disposed)
-            if (disposing)
-                _context.Dispose();
-        _disposed = true;
     }
 }

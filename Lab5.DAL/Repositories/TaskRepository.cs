@@ -6,22 +6,14 @@ using Task = Lab5.DAL.Entities.Task;
 
 namespace Lab5.DAL.Repositories;
 
-public class TaskRepository : IRepository<Task>, IDisposable
+public class TaskRepository : IRepository<Task>
 {
-    private readonly ApplicationContext _context;
-
-    private bool _disposed;
+    private readonly ManagerContext _context;
 
 
-    public TaskRepository(ApplicationContext context)
+    public TaskRepository(ManagerContext context)
     {
         _context = context;
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
     }
 
     public IEnumerable<Task> GetAll()
@@ -55,13 +47,5 @@ public class TaskRepository : IRepository<Task>, IDisposable
     public void Save()
     {
         _context.SaveChanges();
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!_disposed)
-            if (disposing)
-                _context.Dispose();
-        _disposed = true;
     }
 }
