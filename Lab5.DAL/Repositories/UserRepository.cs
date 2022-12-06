@@ -1,5 +1,4 @@
 using System.Data.Entity.Core;
-using System.Data.SqlTypes;
 using Lab5.DAL.EF;
 using Lab5.DAL.Entities;
 using Lab5.DAL.Interfaces;
@@ -24,7 +23,7 @@ public class UserRepository : IRepository<User>
 
     public User GetById(int id)
     {
-        var item = _context.Users.FirstOrDefault(item => item.Id == id );
+        var item = _context.Users.FirstOrDefault(item => item.Id == id);
         if (item != null) return item;
         throw new ObjectNotFoundException();
     }
