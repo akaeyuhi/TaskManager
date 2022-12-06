@@ -8,11 +8,11 @@ namespace Lab5.BL.Interfaces;
 public interface ITaskService
 {
     UnitOfWork Data { get; }
-    Task CreateTask(CurrentTask newTask);
+    Task CreateTask(TaskDto newTask);
     Task GetTaskById(int taskId);
     void SetTaskPriority(Task task, bool priority);
     void SetTaskPriority(int taskId, bool priority);
-    void UpdateTask(CurrentTask newData);
+    void UpdateTask(TaskDto newData);
     void DeleteTask(int taskId);
     void DeleteTask(Task task);
 }

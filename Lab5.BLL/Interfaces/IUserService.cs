@@ -8,11 +8,11 @@ namespace Lab5.BL.Interfaces;
 public interface IUserService
 {
     UnitOfWork Data { get; }
-    User CreateUser(CurrentUser newUser);
+    User CreateUser(UserDto newUser);
     User GetUserById(int userId);
     void DeleteUser(int userId);
     void DeleteUser(User user);
-    void UpdateUser(CurrentUser newData);
+    void UpdateUser(UserDto newData);
     void SetBusyness(int userId, bool isBusy);
     void SetBusyness(User user, bool isBusy);
     void AssignTask(User user, Task task);

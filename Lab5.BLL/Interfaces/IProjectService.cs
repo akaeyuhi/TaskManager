@@ -8,7 +8,7 @@ namespace Lab5.BL.Interfaces;
 public interface IProjectService
 {
     UnitOfWork Data { get; }
-    void CreateProject(CurrentProject newProject);
+    void CreateProject(ProjectDto newProject);
     void AddUsers(int projectId, IEnumerable<User> users);
     void AddTasks(int projectId, IEnumerable<Task> tasks);
     void AddUsers(int projectId, User user);
