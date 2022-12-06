@@ -1,7 +1,5 @@
 using Lab5.DAL.EF;
 using Lab5.DAL.Repositories;
-using Microsoft.EntityFrameworkCore;
-
 namespace Lab5.DAL.UnitOfWork;
 
 public class UnitOfWork : IDisposable
@@ -9,9 +7,9 @@ public class UnitOfWork : IDisposable
     private readonly ManagerContext _db;
     private bool _disposed;
 
-    public UnitOfWork(DbContextOptions options)
+    public UnitOfWork(ManagerContext context)
     {
-        _db = new ManagerContext(options);
+        _db = context;
         Projects = new ProjectRepository(_db);
         Tasks = new TaskRepository(_db);
         Users = new UserRepository(_db);
