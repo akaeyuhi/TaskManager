@@ -7,7 +7,6 @@ namespace Lab5.BL.Interfaces;
 
 public interface IUserService
 {
-    UnitOfWork Data { get; }
     User CreateUser(UserDto newUser);
     User GetUserById(int userId);
     void DeleteUser(int userId);

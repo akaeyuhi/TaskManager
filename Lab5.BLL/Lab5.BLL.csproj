@@ -10,7 +10,6 @@
     <ItemGroup>
       <Folder Include="Infrastructure\Exceptions" />
       <Folder Include="Infrastructure\Injections" />
-      <Folder Include="Services" />
     </ItemGroup>
 
     <ItemGroup>

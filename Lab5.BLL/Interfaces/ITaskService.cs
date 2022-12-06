@@ -7,7 +7,6 @@ namespace Lab5.BL.Interfaces;
 
 public interface ITaskService
 {
-    UnitOfWork Data { get; }
     Task CreateTask(TaskDto newTask);
     Task GetTaskById(int taskId);
     void SetTaskPriority(Task task, bool priority);
