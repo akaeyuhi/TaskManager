@@ -1,6 +1,9 @@
 using Lab5.DAL.EF;
+using Lab5.DAL.Entities;
 using Lab5.DAL.Interfaces;
 using Lab5.DAL.Repositories;
+using Task = Lab5.DAL.Entities.Task;
+
 namespace Lab5.DAL.UnitOfWork;
 
 public class UnitOfWork : IUnitOfWork
@@ -16,11 +19,11 @@ public class UnitOfWork : IUnitOfWork
         Users = new UserRepository(_db);
     }
 
-    public ProjectRepository Projects { get; }
+    public IRepository<Project> Projects { get; }
 
-    public TaskRepository Tasks { get; }
+    public IRepository<Task> Tasks { get; }
 
-    public UserRepository Users { get; }
+    public IRepository<User> Users { get; }
 
     public void Dispose()
     {

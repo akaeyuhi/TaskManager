@@ -1,6 +1,7 @@
 using Lab5.BLL.DTO;
 using Lab5.BLL.Infrastructure.Exceptions;
 using Lab5.BLL.Interfaces;
+using Lab5.DAL.Interfaces;
 using Lab5.DAL.UnitOfWork;
 using Task = Lab5.DAL.Entities.Task;
 
@@ -8,9 +9,9 @@ namespace Lab5.BLL.Services;
 
 public class TaskService : ITaskService
 {
-    private readonly UnitOfWork _data;
+    private readonly IUnitOfWork _data;
 
-    public TaskService(UnitOfWork data)
+    public TaskService(IUnitOfWork data)
     {
         _data = data;
     }
