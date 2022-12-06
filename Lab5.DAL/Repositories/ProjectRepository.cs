@@ -1,4 +1,4 @@
-using System.Data.SqlTypes;
+using System.Data.Entity.Core;
 using Lab5.DAL.EF;
 using Lab5.DAL.Entities;
 using Lab5.DAL.Interfaces;
@@ -24,9 +24,9 @@ public class ProjectRepository : IRepository<Project>
 
     public Project GetById(int id)
     {
-        var item = _context.Projects.Find(id);
+        var item = _context.Projects.FirstOrDefault(item => item.Id == id );
         if (item != null) return item;
-        throw new SqlNullValueException();
+        throw new ObjectNotFoundException();
     }
 
     public void Add(Project item)

@@ -1,3 +1,4 @@
+using System.Data.Entity.Core;
 using System.Data.SqlTypes;
 using Lab5.DAL.EF;
 using Lab5.DAL.Interfaces;
@@ -23,9 +24,9 @@ public class TaskRepository : IRepository<Task>
 
     public Task GetById(int id)
     {
-        var item = _context.Tasks.Find(id);
+        var item = _context.Tasks.FirstOrDefault(item => item.Id == id );
         if (item != null) return item;
-        throw new SqlNullValueException();
+        throw new ObjectNotFoundException();
     }
 
     public void Add(Task item)
