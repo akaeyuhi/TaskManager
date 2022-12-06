@@ -1,4 +1,4 @@
-namespace Lab5.BL.DTO;
+namespace Lab5.BLL.DTO;
 
 public class UserDto
 {

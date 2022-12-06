@@ -1,9 +1,9 @@
-using Lab5.BL.DTO;
+using Lab5.BLL.DTO;
 using Lab5.DAL.Entities;
 using Lab5.DAL.UnitOfWork;
 using Task = System.Threading.Tasks.Task;
 
-namespace Lab5.BL.Interfaces;
+namespace Lab5.BLL.Interfaces;
 
 public interface ITaskService
 {
