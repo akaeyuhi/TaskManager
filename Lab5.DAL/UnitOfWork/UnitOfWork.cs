@@ -1,8 +1,9 @@
 using Lab5.DAL.EF;
+using Lab5.DAL.Interfaces;
 using Lab5.DAL.Repositories;
 namespace Lab5.DAL.UnitOfWork;
 
-public class UnitOfWork : IDisposable
+public class UnitOfWork : IUnitOfWork
 {
     private readonly ManagerContext _db;
     private bool _disposed;
