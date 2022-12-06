@@ -9,6 +9,7 @@ public interface IUserService
 {
     User CreateUser(UserDto newUser);
     User GetUserById(int userId);
+    IEnumerable<User> GetAllUsers();
     void DeleteUser(int userId);
     void DeleteUser(User user);
     void UpdateUser(UserDto newData);

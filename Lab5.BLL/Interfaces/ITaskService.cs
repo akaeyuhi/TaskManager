@@ -9,9 +9,12 @@ public interface ITaskService
 {
     Task CreateTask(TaskDto newTask);
     Task GetTaskById(int taskId);
+
+    IEnumerable<Task> GetAllTasks();
     void SetTaskPriority(Task task, bool priority);
     void SetTaskPriority(int taskId, bool priority);
-    void UpdateTask(TaskDto newData);
+    void UpdateTask(Task task, TaskDto newData);
+    void UpdateTask(int taskId, TaskDto newData);
     void DeleteTask(int taskId);
     void DeleteTask(Task task);
 }

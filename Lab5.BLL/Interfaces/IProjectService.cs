@@ -7,6 +7,8 @@ namespace Lab5.BLL.Interfaces;
 public interface IProjectService
 {
     void CreateProject(ProjectDto newProject);
+    Project GetProjectById(int projectId);
+    IEnumerable<Project> GetAllProjects();
     void AddUsers(int projectId, IEnumerable<User> users);
     void AddTasks(int projectId, IEnumerable<Task> tasks);
     void AddUsers(int projectId, User user);
