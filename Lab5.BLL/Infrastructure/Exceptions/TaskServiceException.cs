@@ -1,6 +1,6 @@
 namespace Lab5.BLL.Infrastructure.Exceptions;
 
-public class TaskServiceException: Exception
+public class TaskServiceException : Exception
 {
     public TaskServiceException()
     {

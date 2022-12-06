@@ -4,7 +4,7 @@ using Ninject.Modules;
 
 namespace Lab5.BLL.Infrastructure.Injections;
 
-public class BusinessBindings: NinjectModule
+public class BusinessBindings : NinjectModule
 {
     public override void Load()
     {

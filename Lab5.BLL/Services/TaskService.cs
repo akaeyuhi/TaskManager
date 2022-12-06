@@ -2,7 +2,6 @@ using Lab5.BLL.DTO;
 using Lab5.BLL.Infrastructure.Exceptions;
 using Lab5.BLL.Interfaces;
 using Lab5.DAL.Interfaces;
-using Lab5.DAL.UnitOfWork;
 using Task = Lab5.DAL.Entities.Task;
 
 namespace Lab5.BLL.Services;
@@ -122,7 +121,7 @@ public class TaskService : ITaskService
             throw new TaskServiceException(ex.Message);
         }
     }
-    
+
     public void UpdateTask(int taskId, TaskDto newData)
     {
         var task = GetTaskById(taskId);

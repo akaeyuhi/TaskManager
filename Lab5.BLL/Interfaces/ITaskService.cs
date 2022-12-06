@@ -1,6 +1,4 @@
 using Lab5.BLL.DTO;
-using Lab5.DAL.Entities;
-using Lab5.DAL.UnitOfWork;
 using Task = Lab5.DAL.Entities.Task;
 
 namespace Lab5.BLL.Interfaces;
