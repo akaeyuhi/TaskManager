@@ -1,6 +1,6 @@
 namespace Lab5.BL.DTO;
 
-public class CurrentUser
+public class UserDto
 {
     public string Name;
     public bool Busyness;

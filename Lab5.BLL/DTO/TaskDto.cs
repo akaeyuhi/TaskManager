@@ -1,6 +1,6 @@
 namespace Lab5.BL.DTO;
 
-public class CurrentTask
+public class TaskDto
 {
     public string Name = "";
     public string Description = "";

@@ -1,6 +1,6 @@
 namespace Lab5.BL.DTO;
 
-public class CurrentProject
+public class ProjectDto
 {
     public string Name = "";
 }
