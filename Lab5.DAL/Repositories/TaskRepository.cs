@@ -21,11 +21,9 @@ public class TaskRepository : IRepository<Task>
         return _context.Tasks.ToList();
     }
 
-    public Task GetById(int id)
+    public Task? GetById(int id)
     {
-        var item = _context.Tasks.FirstOrDefault(item => item.Id == id);
-        if (item != null) return item;
-        throw new ObjectNotFoundException();
+        return _context.Tasks.FirstOrDefault(item => item.Id == id);
     }
 
     public void Add(Task item)

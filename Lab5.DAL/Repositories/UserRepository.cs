@@ -21,11 +21,9 @@ public class UserRepository : IRepository<User>
         return _context.Users.ToList();
     }
 
-    public User GetById(int id)
+    public User? GetById(int id)
     {
-        var item = _context.Users.FirstOrDefault(item => item.Id == id);
-        if (item != null) return item;
-        throw new ObjectNotFoundException();
+        return _context.Users.FirstOrDefault(item => item.Id == id);
     }
 
     public void Add(User item)

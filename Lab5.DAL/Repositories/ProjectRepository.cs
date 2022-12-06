@@ -22,11 +22,9 @@ public class ProjectRepository : IRepository<Project>
         return _context.Projects.ToList();
     }
 
-    public Project GetById(int id)
+    public Project? GetById(int id)
     {
-        var item = _context.Projects.FirstOrDefault(item => item.Id == id);
-        if (item != null) return item;
-        throw new ObjectNotFoundException();
+        return _context.Projects.FirstOrDefault(item => item.Id == id);
     }
 
     public void Add(Project item)
