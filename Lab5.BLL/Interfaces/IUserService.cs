@@ -6,13 +6,13 @@ namespace Lab5.BLL.Interfaces;
 
 public interface IUserService
 {
-    User CreateUser(UserDto newUser);
+    User CreateUser(UserDto userDto);
     User GetUserById(int userId);
     IEnumerable<User> GetAllUsers();
     void DeleteUser(int userId);
     void DeleteUser(User user);
-    void UpdateUser(User user, UserDto newData);
-    void UpdateUser(int userId, UserDto newData);
+    void UpdateUser(User user, UserDto userDto);
+    void UpdateUser(int userId, UserDto userDto);
     void SetBusyness(int userId, bool isBusy);
     void SetBusyness(User user, bool isBusy);
     void AssignTask(User user, Task task);

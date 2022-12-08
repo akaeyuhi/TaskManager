@@ -5,14 +5,14 @@ namespace Lab5.BLL.Interfaces;
 
 public interface ITaskService
 {
-    Task CreateTask(TaskDto newTask);
+    Task CreateTask(TaskDto taskDto);
     Task GetTaskById(int taskId);
 
     IEnumerable<Task> GetAllTasks();
     void SetTaskPriority(Task task, bool priority);
     void SetTaskPriority(int taskId, bool priority);
-    void UpdateTask(Task task, TaskDto newData);
-    void UpdateTask(int taskId, TaskDto newData);
+    void UpdateTask(Task task, TaskDto taskDto);
+    void UpdateTask(int taskId, TaskDto taskDto);
     void DeleteTask(int taskId);
     void DeleteTask(Task task);
 }
