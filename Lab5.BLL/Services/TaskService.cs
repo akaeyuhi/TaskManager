@@ -9,6 +9,7 @@ namespace Lab5.BLL.Services;
 public class TaskService : ITaskService
 {
     private readonly IUnitOfWork _data;
+    private readonly IEnumerable<string> _status = new [] {"progress", "completed", "abandoned"};
 
     public TaskService(IUnitOfWork data)
     {
@@ -96,6 +97,37 @@ public class TaskService : ITaskService
         try
         {
             task.Priority = priority;
+            _data.Tasks.Update(task);
+            _data.Save();
+        }
+        catch (Exception ex)
+        {
+            throw new TaskServiceException(ex.Message);
+        }
+    }
+
+    public void SetTaskStatus(int taskId, string status)
+    {
+        if(!_status.Contains(status)) throw new TaskServiceException("Invalid status");
+        var task = GetTaskById(taskId);
+        try
+        {
+            task.Status = status;
+            _data.Tasks.Update(task);
+            _data.Save();
+        }
+        catch (Exception ex)
+        {
+            throw new TaskServiceException(ex.Message);
+        }
+    }
+
+    public void SetTaskStatus(Task task, string status)
+    {
+        if(!_status.Contains(status)) throw new TaskServiceException("Invalid status");
+        try
+        {
+            task.Status = status;
             _data.Tasks.Update(task);
             _data.Save();
         }

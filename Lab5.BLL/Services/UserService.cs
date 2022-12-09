@@ -166,6 +166,7 @@ public class UserService : IUserService
 
     public void AssignTask(User user, Task task)
     {
+        if (user.ProjectId != task.ProjectId) throw new UserServiceException("User and Task belong to separate teams");
         try
         {
             user.CurrentTask = task;
@@ -178,10 +179,10 @@ public class UserService : IUserService
         }
     }
 
-
     public void AssignTask(int userId, Task task)
     {
         var user = GetUserById(userId);
+        if (user.ProjectId != task.ProjectId) throw new UserServiceException("User and Task belong to separate teams");
         try
         {
             user.CurrentTask = task;
