@@ -1,12 +1,9 @@
-using Lab5.BLL.Infrastructure.Injections;
 using Lab5.BLL.Interfaces;
 using Lab5.BLL.Services;
 using Lab5.DAL.EF;
 using Lab5.DAL.Interfaces;
 using Lab5.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
-using Ninject;
-using Ninject.Web.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,10 +18,6 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
-
-// var kernel = new StandardKernel(new BusinessBindings());
-// var dependencyResolver = new NinjectDependencyResolver(kernel);
-// dependencyResolver.BeginScope();
 
 var app = builder.Build();
 
