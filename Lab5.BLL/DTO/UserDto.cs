@@ -2,8 +2,8 @@ namespace Lab5.BLL.DTO;
 
 public class UserDto
 {
-    public readonly string Name = "";
-    public readonly bool Busyness = false;
-    public readonly int? CurrentTaskId = null;
-    public readonly int? ProjectId = null;
+    public string Name { get; set; }
+    public bool Busyness { get; set; } = false;
+    public int? CurrentTaskId { get; set; } = null;
+    public int? ProjectId  { get; set; } = null;
 }
