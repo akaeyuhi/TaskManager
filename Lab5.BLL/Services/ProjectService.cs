@@ -20,7 +20,7 @@ public class ProjectService: IProjectService
     {
         var project = new Project
         {
-            ProjectName = projectDto.Name,
+            ProjectName = projectDto.ProjectName,
         };
         try
         {
@@ -156,6 +156,22 @@ public class ProjectService: IProjectService
         catch (Exception ex)
         {
             throw new ProjectServiceException(ex.Message);
+        }
+    }
+
+    public void UpdateProject(int projectId, ProjectDto projectDto)
+    {
+        var project = GetProjectById(projectId);
+        try
+        {
+            project.ProjectName = projectDto.ProjectName != "" ? projectDto.ProjectName : project.ProjectName;
+            
+            _data.Projects.Update(project);
+            _data.Save();
+        }
+        catch (Exception ex)
+        {
+            throw new TaskServiceException(ex.Message);
         }
     }
 }
