@@ -6,4 +6,6 @@ public class TaskDto
     public readonly string Name = "";
     public readonly bool Priority = false;
     public readonly string Status = "created";
+    public readonly int? UserId = null;
+    public readonly int? ProjectId = null;
 }

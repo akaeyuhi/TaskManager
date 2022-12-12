@@ -2,5 +2,5 @@ namespace Lab5.BLL.DTO;
 
 public class ProjectDto
 {
-    public string Name = "";
+    public readonly string ProjectName = "";
 }
