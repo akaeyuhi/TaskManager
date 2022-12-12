@@ -21,7 +21,8 @@ public class UserService : IUserService
         var user = new User
         {
             Name = userDto.Name,
-            Busyness = userDto.Busyness
+            Busyness = userDto.Busyness,
+            ProjectId = userDto.ProjectId,
         };
         try
         {
@@ -139,6 +140,8 @@ public class UserService : IUserService
         {
             user.Name = userDto.Name != "" ? userDto.Name : user.Name;
             user.Busyness = userDto.Busyness != user.Busyness ? userDto.Busyness : user.Busyness;
+            user.ProjectId = userDto.ProjectId ?? user.ProjectId;
+
             _data.Users.Update(user);
             _data.Save();
         }
@@ -155,6 +158,7 @@ public class UserService : IUserService
         {
             user.Name = userDto.Name != "" ? userDto.Name : user.Name;
             user.Busyness = userDto.Busyness != user.Busyness ? userDto.Busyness : user.Busyness;
+            user.ProjectId = userDto.ProjectId ?? user.ProjectId;
             _data.Users.Update(user);
             _data.Save();
         }
