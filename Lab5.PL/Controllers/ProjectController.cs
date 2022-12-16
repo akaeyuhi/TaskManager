@@ -1,7 +1,7 @@
 using Lab5.BLL.DTO;
 using Lab5.BLL.Interfaces;
+using Lab5.PL.DTO;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Lab5.PL.Controllers
 {
     [Route("api/[controller]")]
@@ -51,47 +51,88 @@ namespace Lab5.PL.Controllers
         }
 
         [HttpPut("addUsers/{id}")]
-        public IActionResult PutUsers(int id, [FromBody] IEnumerable<int> userIds)
+        public IActionResult PutUsers(int id, [FromBody] UserIdsDto idsDto)
         {
-            var users = userIds.Select(userId => _userService.GetUserById(userId)).ToList();
-            _projectService.AddUsers(id, users);
+            var users = idsDto.UserIds.Select(userId => _userService.GetUserById(userId)).ToList();
+            if (users.Contains(null)) return NotFound("Users with specified id was not found");
+            _projectService.AddUsers(id, users!);
             return Ok();
         }
         
         [HttpPut("addUser/{id}")]
-        public IActionResult PutUser(int id, [FromBody] int userId)
+        public IActionResult PutUser(int id, [FromBody] UserIdDto idDto)
         {
-            _projectService.AddUsers(id, _userService.GetUserById(userId));
+            var user = _userService.GetUserById(idDto.UserId);
+            if (user == null) return NotFound("Task with specified id was not found");
+            _projectService.AddUsers(id, user);
+            return Ok();
+        }
+        
+        
+        [HttpDelete("deleteUser/{id}")]
+        public IActionResult DeleteUser(int id, [FromBody] UserIdDto idDto)
+        {
+            var user = _userService.GetUserById(idDto.UserId);
+            if (user == null) return NotFound("User with specified id was not found");
+            _projectService.DeleteUser(id, user);
+            return Ok();
+        }
+        
+        [HttpDelete("deleteTask/{id}")]
+        public IActionResult DeleteTask(int id, [FromBody] TaskIdDto idDto)
+        {
+            var task = _taskService.GetTaskById(idDto.TaskId);
+            if (task == null) return NotFound("Task with specified id was not found");
+            _projectService.DeleteTask(id, task);
+            return Ok();
+        }
+        
+        [HttpDelete("deleteTask/{id}")]
+        public IActionResult DeleteTask(int id)
+        {
+            _projectService.ClearTasks(id);
+            return Ok();
+        }
+        
+        [HttpDelete("deleteUser/{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            _projectService.ClearUsers(id);
             return Ok();
         }
         
         [HttpPut("addTasks/{id}")]
-        public IActionResult PutTasks(int id, [FromBody] IEnumerable<int> taskIds)
+        public IActionResult PutTasks(int id, [FromBody] TaskIdsDto idsDto)
         {
-            var tasks = taskIds.Select(userId => _taskService.GetTaskById(userId)).ToList();
-            _projectService.AddTasks(id, tasks);
+            var tasks = idsDto.TaskIds.Select(taskId => _taskService.GetTaskById(taskId)).ToList();
+            if (tasks.Contains(null)) return NotFound("Tasks with specified id was not found");
+            _projectService.AddTasks(id, tasks!);
             return Ok();
         }
         
         [HttpPut("addUser/{id}")]
-        public IActionResult PutTask(int id, [FromBody] int taskId)
+        public IActionResult PutTask(int id, [FromBody] TaskIdDto idDto)
         {
-            _projectService.AddTasks(id, _taskService.GetTaskById(taskId));
+            var task = _taskService.GetTaskById(idDto.TaskId);
+            if (task == null) return NotFound("Task with specified id was not found");
+            _projectService.AddTasks(id, task);
             return Ok();
         }
         
-        [HttpPut("assignTasks")]
+        [HttpPut("assignTasks/{id}")]
         public IActionResult Put(int id)
         {
             var project = _projectService.GetProjectById(id);
+            if (project == null) return NotFound("Project with specified id was not found");
             var tasks = project.Tasks.Where(task => task.Priority && task.Status != "completed" && task.UserId == null);
             foreach (var projectUser in project.Users)
             {
-                if(!projectUser.Busyness) projectUser.TaskId = tasks.FirstOrDefault().Id;
+                var setTask = tasks.FirstOrDefault();
+                if(!projectUser.Busyness && setTask != null) _userService.AssignTask(projectUser, setTask);
             }
             return Ok();
         }
-
+        
         // DELETE: api/Project/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

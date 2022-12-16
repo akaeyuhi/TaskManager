@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Lab5.BLL.DTO;
 using Lab5.BLL.Interfaces;
-using Lab5.DAL.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lab5.PL.Controllers
@@ -50,6 +44,13 @@ namespace Lab5.PL.Controllers
         public IActionResult Put(int id, [FromBody] UserDto value)
         {
             _userService.UpdateUser(id, value);
+            return Ok();
+        }
+        
+        [HttpDelete("clearTask/{id}")]
+        public IActionResult Put(int id)
+        {
+            _userService.ClearTask(id);
             return Ok();
         }
 
