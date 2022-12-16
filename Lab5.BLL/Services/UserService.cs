@@ -23,6 +23,7 @@ public class UserService : IUserService
             Name = userDto.Name,
             Busyness = userDto.Busyness,
             ProjectId = userDto.ProjectId,
+            TaskId = userDto.CurrentTaskId
         };
         try
         {
@@ -54,7 +55,7 @@ public class UserService : IUserService
         var user = GetUserById(userId);
         try
         {
-            user.CurrentTask = null;
+            user.TaskId = null;
             _data.Users.Update(user);
             _data.Save();
         }
@@ -68,7 +69,7 @@ public class UserService : IUserService
     {
         try
         {
-            user.CurrentTask = null;
+            user.TaskId = null;
             _data.Users.Update(user);
             _data.Save();
         }
@@ -141,6 +142,7 @@ public class UserService : IUserService
             user.Name = userDto.Name != "" ? userDto.Name : user.Name;
             user.Busyness = userDto.Busyness != user.Busyness ? userDto.Busyness : user.Busyness;
             user.ProjectId = userDto.ProjectId ?? user.ProjectId;
+            user.TaskId = userDto.CurrentTaskId ?? user.TaskId;
 
             _data.Users.Update(user);
             _data.Save();
@@ -159,6 +161,7 @@ public class UserService : IUserService
             user.Name = userDto.Name != "" ? userDto.Name : user.Name;
             user.Busyness = userDto.Busyness != user.Busyness ? userDto.Busyness : user.Busyness;
             user.ProjectId = userDto.ProjectId ?? user.ProjectId;
+            user.TaskId = userDto.CurrentTaskId ?? user.TaskId;
             _data.Users.Update(user);
             _data.Save();
         }
@@ -173,7 +176,7 @@ public class UserService : IUserService
         if (user.ProjectId != task.ProjectId) throw new UserServiceException("User and Task belong to separate teams");
         try
         {
-            user.CurrentTask = task;
+            user.TaskId = task.Id;
             _data.Users.Update(user);
             _data.Save();
         }
@@ -189,7 +192,7 @@ public class UserService : IUserService
         if (user.ProjectId != task.ProjectId) throw new UserServiceException("User and Task belong to separate teams");
         try
         {
-            user.CurrentTask = task;
+            user.TaskId = task.Id;
             _data.Users.Update(user);
             _data.Save();
         }
