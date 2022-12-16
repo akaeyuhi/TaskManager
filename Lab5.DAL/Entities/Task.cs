@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Lab5.DAL.Entities;
 
@@ -16,10 +17,9 @@ public class Task
 
     public bool Priority { get; set; }
     public string Status { get; set; } = "progress";
-
+    
+    [JsonIgnore]
     public int? UserId { get; set; }
-    public virtual User User { get; set; }
-
+    [JsonIgnore]
     public int? ProjectId { get; set; }
-    public virtual Project Project { get; set; }
 }
