@@ -10,7 +10,8 @@ public class User
     [StringLength(50, MinimumLength = 5, ErrorMessage = "Name must have length from 5 to 50 symbols")]
     public string Name { get; set; } = "";
 
-    public Task? CurrentTask { get; set; }
+    public int? TaskId { get; set; }
+    public Task? Task { get; set; }
 
     public bool Busyness { get; set; }
 
