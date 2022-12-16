@@ -16,5 +16,8 @@ public interface IProjectService
     void DeleteProject(int projectId);
     void ClearTasks(int projectId);
     void ClearUsers(int projectId);
+    void DeleteUser(int projectId, User user);
+    void DeleteTask(int projectId, Task task);
+    
     void UpdateProject(int projectId, ProjectDto projectDto);
 }

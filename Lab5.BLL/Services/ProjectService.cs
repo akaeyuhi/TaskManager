@@ -163,6 +163,38 @@ public class ProjectService: IProjectService
         }
     }
 
+    public void DeleteUser(int projectId, User user)
+    {
+        var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
+        try
+        {
+            project.Users.Remove(user);
+            _data.Projects.Update(project);
+            _data.Save();
+        }
+        catch (Exception ex)
+        {
+            throw new TaskServiceException(ex.Message);
+        }
+    }
+
+    public void DeleteTask(int projectId, Task task)
+    {
+        var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
+        try
+        {
+            project.Tasks.Remove(task);
+            _data.Projects.Update(project);
+            _data.Save();
+        }
+        catch (Exception ex)
+        {
+            throw new TaskServiceException(ex.Message);
+        }
+    }
+
     public void UpdateProject(int projectId, ProjectDto projectDto)
     {
         var project = GetProjectById(projectId);
