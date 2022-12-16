@@ -24,8 +24,6 @@ public class TaskService : ITaskService
             Description = taskDto.Description,
             Status = taskDto.Status,
             Priority = taskDto.Priority,
-            ProjectId = taskDto.ProjectId,
-            UserId = taskDto.UserId
         };
 
         try
@@ -67,11 +65,9 @@ public class TaskService : ITaskService
         }
     }
 
-    public Task GetTaskById(int taskId)
+    public Task? GetTaskById(int taskId)
     {
-        var task = _data.Tasks.GetById(taskId);
-        if (task == null) throw new TaskServiceException("Task not found in DB");
-        return task;
+        return _data.Tasks.GetById(taskId);
     }
 
     public IEnumerable<Task> GetAllTasks()
@@ -96,6 +92,7 @@ public class TaskService : ITaskService
     public void SetTaskPriority(int taskId, bool priority)
     {
         var task = GetTaskById(taskId);
+        if (task == null) throw new TaskServiceException("Invalid task id");
         try
         {
             task.Priority = priority;
@@ -112,6 +109,7 @@ public class TaskService : ITaskService
     {
         if(!_status.Contains(status)) throw new TaskServiceException("Invalid status");
         var task = GetTaskById(taskId);
+        if (task == null) throw new TaskServiceException("Invalid task id");
         try
         {
             task.Status = status;
@@ -147,8 +145,6 @@ public class TaskService : ITaskService
             task.Description = taskDto.Description != "" ? taskDto.Description : task.Description;
             task.Priority = taskDto.Priority != task.Priority ? taskDto.Priority : task.Priority;
             task.Status = taskDto.Status != task.Status ? taskDto.Status : task.Status;
-            task.UserId = taskDto.UserId ?? task.UserId;
-            task.ProjectId = taskDto.ProjectId ?? task.ProjectId;
             _data.Tasks.Update(task);
             _data.Save();
         }
@@ -161,14 +157,14 @@ public class TaskService : ITaskService
     public void UpdateTask(int taskId, TaskDto taskDto)
     {
         var task = GetTaskById(taskId);
+        if (task == null) throw new TaskServiceException("Invalid task id");
+
         try
         {
             task.Name = taskDto.Name != "" ? taskDto.Name : task.Name;
             task.Description = taskDto.Description != "" ? taskDto.Description : task.Description;
             task.Priority = taskDto.Priority != task.Priority ? taskDto.Priority : task.Priority;
             task.Status = taskDto.Status != task.Status ? taskDto.Status : task.Status;
-            task.UserId = taskDto.UserId ?? task.UserId;
-            task.ProjectId = taskDto.ProjectId ?? task.ProjectId;
             _data.Tasks.Update(task);
             _data.Save();
         }
