@@ -18,12 +18,18 @@ public class ProjectRepository : IRepository<Project>
 
     public IEnumerable<Project> GetAll()
     {
-        return _context.Projects.ToList();
+        return _context.Projects
+            .Include(project => project.Tasks)
+            .Include(project => project.Users)
+            .ToList();
     }
 
     public Project? GetById(int id)
     {
-        return _context.Projects.FirstOrDefault(item => item.Id == id);
+        return _context.Projects
+            .Include(project => project.Tasks)
+            .Include(project => project.Users)
+            .FirstOrDefault(item => item.Id == id);
     }
 
     public void Add(Project item)
