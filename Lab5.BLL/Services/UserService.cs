@@ -22,8 +22,6 @@ public class UserService : IUserService
         {
             Name = userDto.Name,
             Busyness = userDto.Busyness,
-            ProjectId = userDto.ProjectId,
-            TaskId = userDto.CurrentTaskId
         };
         try
         {
@@ -38,11 +36,9 @@ public class UserService : IUserService
         return user;
     }
 
-    public User GetUserById(int userId)
+    public User? GetUserById(int userId)
     {
-        var user = _data.Users.GetById(userId);
-        if (user == null) throw new UserServiceException("User not found in DB");
-        return user;
+        return _data.Users.GetById(userId);
     }
 
     public IEnumerable<User> GetAllUsers()
@@ -53,9 +49,12 @@ public class UserService : IUserService
     public void ClearTask(int userId)
     {
         var user = GetUserById(userId);
+        if (user == null) throw new UserServiceException("Invalid user id");
+
         try
         {
-            user.TaskId = null;
+            user.Task = null;
+            user.Busyness = false;
             _data.Users.Update(user);
             _data.Save();
         }
@@ -69,7 +68,8 @@ public class UserService : IUserService
     {
         try
         {
-            user.TaskId = null;
+            user.Task = null;
+            user.Busyness = false;
             _data.Users.Update(user);
             _data.Save();
         }
@@ -108,6 +108,7 @@ public class UserService : IUserService
     public void SetBusyness(int userId, bool busyness)
     {
         var user = GetUserById(userId);
+        if (user == null) throw new UserServiceException("Invalid user id");
         try
         {
             user.Busyness = busyness;
@@ -141,8 +142,6 @@ public class UserService : IUserService
         {
             user.Name = userDto.Name != "" ? userDto.Name : user.Name;
             user.Busyness = userDto.Busyness != user.Busyness ? userDto.Busyness : user.Busyness;
-            user.ProjectId = userDto.ProjectId ?? user.ProjectId;
-            user.TaskId = userDto.CurrentTaskId ?? user.TaskId;
 
             _data.Users.Update(user);
             _data.Save();
@@ -156,12 +155,11 @@ public class UserService : IUserService
     public void UpdateUser(int userId, UserDto userDto)
     {
         var user = GetUserById(userId);
+        if (user == null) throw new UserServiceException("Invalid user id");
         try
         {
             user.Name = userDto.Name != "" ? userDto.Name : user.Name;
             user.Busyness = userDto.Busyness != user.Busyness ? userDto.Busyness : user.Busyness;
-            user.ProjectId = userDto.ProjectId ?? user.ProjectId;
-            user.TaskId = userDto.CurrentTaskId ?? user.TaskId;
             _data.Users.Update(user);
             _data.Save();
         }
@@ -176,7 +174,8 @@ public class UserService : IUserService
         if (user.ProjectId != task.ProjectId) throw new UserServiceException("User and Task belong to separate teams");
         try
         {
-            user.TaskId = task.Id;
+            user.Task = task;
+            user.Busyness = true;
             _data.Users.Update(user);
             _data.Save();
         }
@@ -189,10 +188,12 @@ public class UserService : IUserService
     public void AssignTask(int userId, Task task)
     {
         var user = GetUserById(userId);
+        if (user == null) throw new UserServiceException("Invalid user id");
         if (user.ProjectId != task.ProjectId) throw new UserServiceException("User and Task belong to separate teams");
         try
         {
-            user.TaskId = task.Id;
+            user.Task = task;
+            user.Busyness = true;
             _data.Users.Update(user);
             _data.Save();
         }
