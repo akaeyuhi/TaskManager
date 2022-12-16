@@ -48,7 +48,7 @@ namespace Lab5.PL.Controllers
         }
         
         [HttpDelete("clearTask/{id}")]
-        public IActionResult Put(int id)
+        public IActionResult DeleteTask(int id)
         {
             _userService.ClearTask(id);
             return Ok();
