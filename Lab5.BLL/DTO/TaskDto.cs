@@ -6,6 +6,4 @@ public class TaskDto
     public string Name { get; set; } = "";
     public bool Priority { get; set; } = false;
     public string Status { get; set; } = "created";
-    public int? UserId { get; set; } = null;
-    public int? ProjectId { get; set; } = null;
 }
