@@ -6,7 +6,7 @@ namespace Lab5.BLL.Interfaces;
 public interface ITaskService
 {
     Task CreateTask(TaskDto taskDto);
-    Task GetTaskById(int taskId);
+    Task? GetTaskById(int taskId);
 
     IEnumerable<Task> GetAllTasks();
     void SetTaskPriority(Task task, bool priority);
