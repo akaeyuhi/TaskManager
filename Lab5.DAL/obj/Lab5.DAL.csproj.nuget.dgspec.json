@@ -50,10 +50,6 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
-            "Ninject": {
-              "target": "Package",
-              "version": "[4.0.0-beta.1, )"
-            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.0, )"

@@ -20,7 +20,7 @@ public class ProjectService: IProjectService
     {
         var project = new Project
         {
-            ProjectName = projectDto.Name,
+            ProjectName = projectDto.ProjectName,
         };
         try
         {
@@ -35,11 +35,9 @@ public class ProjectService: IProjectService
         return project;
     }
 
-    public Project GetProjectById(int projectId)
+    public Project? GetProjectById(int projectId)
     {
-        var project = _data.Projects.GetById(projectId);
-        if (project == null) throw new ProjectServiceException("Project not found in DB");
-        return project;
+        return _data.Projects.GetById(projectId);
     }
 
     public IEnumerable<Project> GetAllProjects()
@@ -50,6 +48,7 @@ public class ProjectService: IProjectService
     public void AddUsers(int projectId, IEnumerable<User> users)
     {
         var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
         try
         {
             foreach (var user in users)
@@ -70,6 +69,7 @@ public class ProjectService: IProjectService
     public void AddTasks(int projectId, IEnumerable<Task> tasks)
     {
         var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
         try
         {
             foreach (var task in tasks)
@@ -89,6 +89,7 @@ public class ProjectService: IProjectService
     public void AddUsers(int projectId, User user)
     {
         var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
         try
         {
             project.Users.Add(user);
@@ -104,6 +105,7 @@ public class ProjectService: IProjectService
     public void AddTasks(int projectId, Task task)
     {
         var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
         try
         {
             project.Tasks.Add(task);
@@ -132,6 +134,7 @@ public class ProjectService: IProjectService
     public void ClearTasks(int projectId)
     {
         var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
         try
         {
             project.Tasks.Clear();
@@ -147,6 +150,7 @@ public class ProjectService: IProjectService
     public void ClearUsers(int projectId)
     {
         var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
         try
         {
             project.Users.Clear();
@@ -156,6 +160,54 @@ public class ProjectService: IProjectService
         catch (Exception ex)
         {
             throw new ProjectServiceException(ex.Message);
+        }
+    }
+
+    public void DeleteUser(int projectId, User user)
+    {
+        var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
+        try
+        {
+            project.Users.Remove(user);
+            _data.Projects.Update(project);
+            _data.Save();
+        }
+        catch (Exception ex)
+        {
+            throw new TaskServiceException(ex.Message);
+        }
+    }
+
+    public void DeleteTask(int projectId, Task task)
+    {
+        var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
+        try
+        {
+            project.Tasks.Remove(task);
+            _data.Projects.Update(project);
+            _data.Save();
+        }
+        catch (Exception ex)
+        {
+            throw new TaskServiceException(ex.Message);
+        }
+    }
+
+    public void UpdateProject(int projectId, ProjectDto projectDto)
+    {
+        var project = GetProjectById(projectId);
+        if (project == null) throw new ProjectServiceException("Invalid project id");
+        try
+        {
+            project.ProjectName = projectDto.ProjectName != "" ? projectDto.ProjectName : project.ProjectName;
+            _data.Projects.Update(project);
+            _data.Save();
+        }
+        catch (Exception ex)
+        {
+            throw new TaskServiceException(ex.Message);
         }
     }
 }

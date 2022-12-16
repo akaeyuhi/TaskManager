@@ -17,12 +17,16 @@ public class UserRepository : IRepository<User>
 
     public IEnumerable<User> GetAll()
     {
-        return _context.Users.ToList();
+        return _context.Users
+            .Include(user => user.Task)
+            .ToList();
     }
 
     public User? GetById(int id)
     {
-        return _context.Users.FirstOrDefault(item => item.Id == id);
+        return _context.Users
+            .Include(user => user.Task)
+            .FirstOrDefault(item => item.Id == id);
     }
 
     public void Add(User item)

@@ -2,6 +2,6 @@ namespace Lab5.BLL.DTO;
 
 public class UserDto
 {
-    public bool Busyness;
-    public string Name;
+    public string Name { get; set; }
+    public bool Busyness { get; set; } = false;
 }

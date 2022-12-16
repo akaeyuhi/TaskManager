@@ -7,7 +7,7 @@ namespace Lab5.BLL.Interfaces;
 public interface IUserService
 {
     User CreateUser(UserDto userDto);
-    User GetUserById(int userId);
+    User? GetUserById(int userId);
     IEnumerable<User> GetAllUsers();
     void DeleteUser(int userId);
     void DeleteUser(User user);
