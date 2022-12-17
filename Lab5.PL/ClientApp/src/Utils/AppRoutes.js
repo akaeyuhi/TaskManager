@@ -1,21 +1,36 @@
 import React from 'react';
-import {Counter} from '../Pages/Counter';
-import {FetchData} from '../Pages/FetchData';
-import {Home} from '../Pages/Home';
+import Home from '../Pages/Home';
 
 const AppRoutes = [
     {
+        path: '/',
         index: true,
         element: <Home/>
     },
-    {
-        path: '/counter',
-        element: <Counter/>
-    },
-    {
-        path: '/fetch-data',
-        element: <FetchData/>
-    }
+    // {
+    //     path: '/project/:id',
+    //     element: <SingleProject/>
+    // },
+    // {
+    //     path: '/projects',
+    //     element: <Projects/>
+    // },
+    // {
+    //     path: '/users',
+    //     element: <Users/>
+    // },
+    // {
+    //     path: '/user/:id',
+    //     element: <SingleUser/>
+    // },
+    // {
+    //     path: '/tasks',
+    //     element: <Tasks/>
+    // },
+    // {
+    //     path: '/task/:id',
+    //     element: <SingleTask/>
+    // }
 ];
 
 export default AppRoutes;
