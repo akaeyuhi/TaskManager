@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import AppRoutes from './Utils/AppRoutes';
-import {Layout} from './components/Layout';
+import {Layout} from './Utils/Layout';
 import './custom.css';
 
 export default function App() {

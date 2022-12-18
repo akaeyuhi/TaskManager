@@ -1,5 +1,7 @@
 import React from 'react';
-import Home from '../Pages/Home';
+import {Home} from '../Pages/Home';
+import Projects from '../Pages/Projects';
+import SingleProject from '../Pages/SingleProject';
 
 const AppRoutes = [
     {
@@ -7,14 +9,14 @@ const AppRoutes = [
         index: true,
         element: <Home/>
     },
-    // {
-    //     path: '/project/:id',
-    //     element: <SingleProject/>
-    // },
-    // {
-    //     path: '/projects',
-    //     element: <Projects/>
-    // },
+    {
+        path: '/project/:id',
+        element: <SingleProject/>
+    },
+    {
+        path: '/projects',
+        element: <Projects/>
+    },
     // {
     //     path: '/users',
     //     element: <Users/>
