@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import Project from '../components/Projects/ProjectCard';
 import {Alert} from 'reactstrap';
+import ProjectCard from '../components/Projects/ProjectCard';
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);
@@ -23,7 +23,7 @@ const Projects = () => {
             <h1>Projects page</h1>
             <div className="flex mt-6">
                 {projects.length ?
-                    projects.map((project, idx) => <Project key={idx} project={project} />) :
+                    projects.map((project, idx) => <ProjectCard key={idx} project={project} />) :
                     <Alert color="primary">
                         No projects yet...
                     </Alert>

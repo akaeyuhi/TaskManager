@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Button, Card, CardBody, CardLink, CardText, CardTitle} from 'reactstrap';
 
-const ProjectCard = ({project})=> {
+const ProjectCard = ({project}) => {
     return (
         <Card
             style={{
