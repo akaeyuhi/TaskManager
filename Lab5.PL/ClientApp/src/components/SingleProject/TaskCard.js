@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Button, Card, CardBody, CardLink, CardSubtitle, CardText, CardTitle} from 'reactstrap';
 
-function TaskCard({task}) {
-    console.log(task);
+function TaskCard({ task, callback }) {
     return (
         <Card
             style={{
@@ -26,11 +25,17 @@ function TaskCard({task}) {
                 <CardText>
                     {task.description}
                 </CardText>
-                <CardLink href={`task/${task.id}`} className="primary">
-                    <Button color="primary">
-                        To task
+                <div className="d-flex justify-content-between">
+                    <CardLink href={`task/${task.id}`} className="primary">
+                        <Button color="primary">
+                            To task
+                        </Button>
+                    </CardLink>
+                    <Button color="danger" onClick={() => callback('task', task.id)}>
+                        Delete
                     </Button>
-                </CardLink>
+                </div>
+
             </CardBody>
         </Card>
     );
@@ -43,7 +48,8 @@ TaskCard.propTypes = {
         description: PropTypes.string,
         priority: PropTypes.bool,
         status: PropTypes.string,
-    })
+    }).isRequired,
+    callback: PropTypes.func.isRequired
 };
 
 export default TaskCard;

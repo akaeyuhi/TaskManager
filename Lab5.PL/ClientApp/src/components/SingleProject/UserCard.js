@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Card, CardBody, CardLink, CardText, CardTitle} from 'reactstrap';
 import PropTypes from 'prop-types';
 
-const UserCard = ({ user }) => {
+const UserCard = ({ user, callback }) => {
     return (
         <Card>
             <CardBody>
@@ -10,18 +10,25 @@ const UserCard = ({ user }) => {
                     {user.name}
                 </CardTitle>
                 <CardText>
-                    Busyness: {user.busyness}
+                    Busyness: {user.busyness ? 'Yes' : 'No'}
                 </CardText>
                 <CardText>
-                    <CardLink href={`task/${user.task.id}`}>
+                    {user.task !== null ? <CardLink href={`task/${user.task.id}`}>
                         Current task: {user.task.name}
-                    </CardLink>
+                    </CardLink> : 'User has no task'}
+
                 </CardText>
-                <CardLink href={`user/${user.id}`}>
-                    <Button color="primary">
-                        To user
+                <div className="d-flex justify-content-between">
+                    <CardLink href={`user/${user.id}`}>
+                        <Button color="primary">
+                                To user
+                        </Button>
+                    </CardLink>
+                    <Button color="danger" onClick={() => callback('user', user.id)}>
+                        Delete
                     </Button>
-                </CardLink>
+                </div>
+
             </CardBody>
         </Card>
     );
@@ -38,7 +45,8 @@ UserCard.propTypes = {
             priority: PropTypes.bool,
             status: PropTypes.string
         })
-    })
+    }),
+    callback: PropTypes.func.isRequired
 };
 
 export default UserCard;
