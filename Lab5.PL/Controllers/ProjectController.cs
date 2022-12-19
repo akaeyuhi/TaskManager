@@ -120,7 +120,7 @@ namespace Lab5.PL.Controllers
         public IActionResult DeleteTask(int id, [FromBody] TaskIdDto idDto)
         {
             var taskToDelete = _taskService.GetTaskById(idDto.TaskId);
-            if(taskToDelete == null) return NotFound("User with specified id was not found");
+            if(taskToDelete == null) return NotFound("Task with specified id was not found");
             _projectService.DeleteTask(id, taskToDelete);
             return Ok();
         }
