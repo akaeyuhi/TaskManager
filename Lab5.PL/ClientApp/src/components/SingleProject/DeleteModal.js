@@ -20,7 +20,6 @@ const DeleteModal = ({ isOpen, toggleFunc, deleteObject, afterDeleteCb }) => {
             console.error(e);
         }
     }, []);
-
     const afterDelete = useCallback(async () => {
         await deleteData(deleteObject);
         afterDeleteCb();
