@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Alert} from 'reactstrap';
+import {Alert, Spinner} from 'reactstrap';
 import ProjectCard from '../components/Projects/ProjectCard';
 
 const Projects = () => {
-    const [projects, setProjects] = useState([]);
+    const [projects, setProjects] = useState(null);
     const fetchData = async () => {
         try {
             const result = await fetch('api/Project');
@@ -19,17 +19,23 @@ const Projects = () => {
     }, []);
 
     return (
-        <div className="container">
-            <h1>Projects page</h1>
-            <div className="flex mt-6">
-                {projects.length ?
-                    projects.map((project, idx) => <ProjectCard key={idx} project={project} />) :
-                    <Alert color="primary">
-                        No projects yet...
-                    </Alert>
-                }
-            </div>
-        </div>
+        <>
+            {projects === null ? <Spinner /> :
+                <div className="container">
+                    <h1>Projects page</h1>
+                    <div className="flex mt-6">
+                        {projects.length ?
+                            projects.map((project, idx) => <ProjectCard key={idx} project={project} />) :
+                            <Alert color="primary">
+                                No projects yet...
+                            </Alert>
+                        }
+                    </div>
+                </div>
+            }
+        </>
+
+
     );
 };
 
