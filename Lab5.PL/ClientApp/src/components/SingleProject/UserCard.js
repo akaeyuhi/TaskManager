@@ -24,6 +24,9 @@ const UserCard = ({ user, callback }) => {
                                 To user
                         </Button>
                     </CardLink>
+                    <Button color="info" onClick={() => ''}>
+                        Edit user
+                    </Button>
                     <Button color="danger" onClick={() => callback('user', user.id)}>
                         Delete
                     </Button>
