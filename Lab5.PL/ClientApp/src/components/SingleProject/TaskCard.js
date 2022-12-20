@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Card, CardBody, CardSubtitle, CardText, CardTitle} from 'reactstrap';
-import EditTaskModal from './EditTaskModal';
+import EditTaskModal from './Modals/EditTaskModal';
 
 function TaskCard({ task, callback }) {
     const [modal, setModal] = useState(false);

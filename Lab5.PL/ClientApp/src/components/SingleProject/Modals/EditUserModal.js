@@ -1,7 +1,7 @@
 import React, {useCallback, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
-import {ProjectContext} from '../../Pages/SingleProject';
+import {ProjectContext} from '../../../Pages/SingleProject';
 
 function EditUserModal({currentUser, toggle, modal}) {
     const {project, setProject} = useContext(ProjectContext);

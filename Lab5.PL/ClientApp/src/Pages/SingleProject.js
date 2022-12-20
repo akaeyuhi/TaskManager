@@ -3,8 +3,8 @@ import {Alert, Button, CardGroup, Spinner} from 'reactstrap';
 import {useParams} from 'react-router-dom';
 import UserCard from '../components/SingleProject/UserCard';
 import TaskCard from '../components/SingleProject/TaskCard';
-import DeleteModal from '../components/SingleProject/DeleteModal';
-import AddUserModal from '../components/SingleProject/AddUserModal';
+import DeleteModal from '../components/SingleProject/Modals/DeleteModal';
+import AddUserModal from '../components/SingleProject/Modals/AddUserModal';
 export const ProjectContext = createContext(null);
 
 const SingleProject = () => {
