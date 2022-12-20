@@ -66,7 +66,7 @@ function CreateTaskModal({toggle, modal}) {
 
     return (
         <Modal isOpen={modal} toggle={toggle}>
-            <ModalHeader toggle={toggle}>Edit user</ModalHeader>
+            <ModalHeader toggle={toggle}>Create task</ModalHeader>
             <ModalBody>
                 <Form onSubmit={(event) => submitHandler(event)}>
                     <FormGroup floating>
