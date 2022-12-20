@@ -3,7 +3,7 @@ import {Alert, Button, CardGroup, Spinner} from 'reactstrap';
 import {useParams} from 'react-router-dom';
 import UserCard from '../components/Cards/UserCard';
 import TaskCard from '../components/Cards/TaskCard';
-import DeleteModal from '../components/Modals/DeleteModal';
+import DeleteFromProjectModal from '../components/Modals/DeleteFromProjectModal';
 import AddUserModal from '../components/Modals/AddUserModal';
 import CreateTaskModal from '../components/Modals/CreateTaskModal';
 export const ProjectContext = createContext(null);
@@ -26,6 +26,7 @@ const SingleProject = () => {
 
     const fetchData = async () => {
         try {
+            setLoading(true);
             const response = await fetch(`api/Project/${params.id}`);
             const json = await response.json();
             setProject(json);
@@ -42,6 +43,20 @@ const SingleProject = () => {
         })));
     }, [showDeleteModal]);
 
+    const assignTasksHandler = async () => {
+        try {
+            await fetch(`api/Project/assignTasks/${params.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            await fetchData();
+        } catch (e) {
+            setError(e);
+        }
+    };
+
 
     useEffect(() => {
         fetchData().then();
@@ -57,6 +72,9 @@ const SingleProject = () => {
                     <h2 className="mt-2">Users:</h2>
                     <Button color="warning" className="h-75" onClick={toggleAddUsers}>
                         Add user
+                    </Button>
+                    <Button color="warning" className="h-75" onClick={async () => await assignTasksHandler()}>
+                        Assign tasks
                     </Button>
                 </div>
                 <CardGroup>
@@ -83,7 +101,7 @@ const SingleProject = () => {
                             </Alert>
                     }
                 </CardGroup>
-                <DeleteModal isOpen={showDeleteModal.isShown} toggleFunc={deleteCallback} deleteObject={{
+                <DeleteFromProjectModal isOpen={showDeleteModal.isShown} toggleFunc={deleteCallback} deleteObject={{
                     deleteType: showDeleteModal.deleteType,
                     deleteId: showDeleteModal.deleteId,
                 }

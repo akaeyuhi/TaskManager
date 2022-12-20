@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom';
 import {ProjectContext} from '../../Pages/SingleProject';
 
 
-const DeleteModal = ({ isOpen, toggleFunc, deleteObject }) => {
+const DeleteFromProjectModal = ({ isOpen, toggleFunc, deleteObject }) => {
     const currentProjectId = useParams().id;
     const {project, setProject} = useContext(ProjectContext);
     const deleteData = useCallback(async (deleteObject) => {
@@ -54,7 +54,7 @@ const DeleteModal = ({ isOpen, toggleFunc, deleteObject }) => {
     );
 };
 
-DeleteModal.propTypes = {
+DeleteFromProjectModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     toggleFunc: PropTypes.func.isRequired,
     deleteObject: PropTypes.shape({
@@ -65,4 +65,4 @@ DeleteModal.propTypes = {
 
 
 
-export default DeleteModal;
+export default DeleteFromProjectModal;
