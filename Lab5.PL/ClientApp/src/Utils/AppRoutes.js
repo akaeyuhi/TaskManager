@@ -26,13 +26,6 @@ const AppRoutes = [
     //     element: <SingleUser/>
     // },
     // {
-    //     path: '/tasks',
-    //     element: <Tasks/>
-    // },
-    // {
-    //     path: '/task/:id',
-    //     element: <SingleTask/>
-    // }
 ];
 
 export default AppRoutes;
