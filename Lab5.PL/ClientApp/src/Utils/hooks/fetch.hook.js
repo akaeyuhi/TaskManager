@@ -3,14 +3,14 @@ import {useEffect, useState} from 'react';
 export const useFetch = (url, options = {}) => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
-    const [abort, setAbort] = useState(() => {});
+    let abort = () => {};
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const abortController = new AbortController();
                 const signal = abortController.signal;
-                setAbort(abortController.abort);
+                abort = abortController.abort.bind(abortController);
                 const res = await fetch(url, {...options, signal});
                 const json = await res.json();
                 setResponse(json);
