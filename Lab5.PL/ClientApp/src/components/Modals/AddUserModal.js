@@ -44,7 +44,6 @@ function EditUserModal({toggle, modal}) {
     const submitHandler = useCallback(async (event) => {
         event.preventDefault();
         const user = candidates.find(user => user.name === formData.newUserName);
-        console.log(formData);
         if(formData.newUserName === '' && user === undefined) return toggle();
         const dto = {
             userId: user.id
