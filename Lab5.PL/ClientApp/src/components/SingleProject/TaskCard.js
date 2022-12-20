@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, Card, CardBody, CardLink, CardSubtitle, CardText, CardTitle} from 'reactstrap';
+import {Button, Card, CardBody, CardSubtitle, CardText, CardTitle} from 'reactstrap';
 
 function TaskCard({ task, callback }) {
     return (
@@ -26,11 +26,6 @@ function TaskCard({ task, callback }) {
                     {task.description}
                 </CardText>
                 <div className="d-flex justify-content-between">
-                    <CardLink href={`task/${task.id}`} className="primary">
-                        <Button color="primary">
-                            To task
-                        </Button>
-                    </CardLink>
                     <Button color="danger" onClick={() => callback('task', task.id)}>
                         Delete
                     </Button>
