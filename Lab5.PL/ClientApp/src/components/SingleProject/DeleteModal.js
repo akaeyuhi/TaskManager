@@ -1,12 +1,14 @@
 import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
+import {useParams} from 'react-router-dom';
 
 
 const DeleteModal = ({ isOpen, toggleFunc, deleteObject, afterDeleteCb }) => {
+    const currentProjectId = useParams().id;
     const deleteData = useCallback(async (deleteObject) => {
         try {
-            await fetch(`api/Project/delete${deleteObject.deleteType}/${deleteObject.currentProjectId}`, {
+            await fetch(`api/Project/delete${deleteObject.deleteType}/${currentProjectId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -47,7 +49,6 @@ DeleteModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     toggleFunc: PropTypes.func.isRequired,
     deleteObject: PropTypes.shape({
-        currentProjectId: PropTypes.number,
         deleteType: PropTypes.string,
         deleteId: PropTypes.number
     }).isRequired,
