@@ -5,6 +5,7 @@ import UserCard from '../components/SingleProject/UserCard';
 import TaskCard from '../components/SingleProject/TaskCard';
 import DeleteModal from '../components/SingleProject/Modals/DeleteModal';
 import AddUserModal from '../components/SingleProject/Modals/AddUserModal';
+import CreateTaskModal from '../components/SingleProject/Modals/CreateTaskModal';
 export const ProjectContext = createContext(null);
 
 const SingleProject = () => {
@@ -19,6 +20,9 @@ const SingleProject = () => {
     const params = useParams();
     const [showAddUserModal, setShowAddUserModal] = useState(false);
     const toggleAddUsers = useCallback(() => setShowAddUserModal(prevState => !prevState), [showAddUserModal]);
+    const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+    const toggleAddTask = useCallback(() => setShowAddTaskModal(prevState => !prevState), [showAddUserModal]);
+
 
     const fetchData = async () => {
         try {
@@ -75,7 +79,12 @@ const SingleProject = () => {
                             </Alert>
                     }
                 </CardGroup>
-                <h2 className="mt-2">Tasks:</h2>
+                <div className="d-flex justify-content-between mt-2  mb-2">
+                    <h2 className="mt-2">Tasks:</h2>
+                    <Button color="warning" className="h-75" onClick={toggleAddTask}>
+                        Add task
+                    </Button>
+                </div>
                 <CardGroup>
                     {
                         project.tasks.length ?
@@ -91,6 +100,7 @@ const SingleProject = () => {
                 }
                 } afterDeleteCb={clearCallback}/>
                 <AddUserModal modal={showAddUserModal} toggle={toggleAddUsers}/>
+                <CreateTaskModal modal={showAddTaskModal} toggle={toggleAddTask}/>
             </div>
         </ProjectContext.Provider>
     );

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {ProjectContext} from '../../../Pages/SingleProject';
 
-function EditUserModal({task, toggle, modal}) {
+function EditTaskModal({task, toggle, modal}) {
     const {project, setProject} = useContext(ProjectContext);
 
     let formData = {
@@ -117,7 +117,7 @@ function EditUserModal({task, toggle, modal}) {
     );
 }
 
-EditUserModal.propTypes = {
+EditTaskModal.propTypes = {
 
     task: PropTypes.shape({
         id: PropTypes.number,
@@ -131,4 +131,4 @@ EditUserModal.propTypes = {
     modal: PropTypes.bool
 };
 
-export default EditUserModal;
+export default EditTaskModal;
