@@ -41,17 +41,6 @@ const SingleProject = () => {
             deleteType, deleteId
         })));
     }, [showDeleteModal]);
-    const clearCallback = useCallback(() => {
-        if(showDeleteModal.deleteId !== null && showDeleteModal.deleteType !== '') {
-            const type = showDeleteModal.deleteType + 's';
-            const tempArray = project[type].filter(item => item.id !== showDeleteModal.deleteId);
-            console.log(tempArray);
-            setProject({
-                ...project,
-                [type]: tempArray
-            });
-        }
-    }, [project, showDeleteModal]);
 
 
     useEffect(() => {
@@ -98,7 +87,7 @@ const SingleProject = () => {
                     deleteType: showDeleteModal.deleteType,
                     deleteId: showDeleteModal.deleteId,
                 }
-                } afterDeleteCb={clearCallback}/>
+                }/>
                 <AddUserModal modal={showAddUserModal} toggle={toggleAddUsers}/>
                 <CreateTaskModal modal={showAddTaskModal} toggle={toggleAddTask}/>
             </div>

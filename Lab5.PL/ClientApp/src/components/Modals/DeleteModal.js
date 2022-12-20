@@ -1,11 +1,13 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {useParams} from 'react-router-dom';
+import {ProjectContext} from '../../Pages/SingleProject';
 
 
-const DeleteModal = ({ isOpen, toggleFunc, deleteObject, afterDeleteCb }) => {
+const DeleteModal = ({ isOpen, toggleFunc, deleteObject }) => {
     const currentProjectId = useParams().id;
+    const {project, setProject} = useContext(ProjectContext);
     const deleteData = useCallback(async (deleteObject) => {
         try {
             await fetch(`api/Project/delete${deleteObject.deleteType}/${currentProjectId}`, {
@@ -24,7 +26,14 @@ const DeleteModal = ({ isOpen, toggleFunc, deleteObject, afterDeleteCb }) => {
     }, []);
     const afterDelete = useCallback(async () => {
         await deleteData(deleteObject);
-        afterDeleteCb();
+        if(deleteObject.deleteId !== null && deleteObject.deleteType !== '') {
+            const type = deleteObject.deleteType + 's';
+            const tempArray = project[type].filter(item => item.id !== deleteObject.deleteId);
+            setProject({
+                ...project,
+                [type]: tempArray
+            });
+        }
     }, [deleteObject]);
 
     return (
@@ -51,8 +60,7 @@ DeleteModal.propTypes = {
     deleteObject: PropTypes.shape({
         deleteType: PropTypes.string,
         deleteId: PropTypes.number
-    }).isRequired,
-    afterDeleteCb: PropTypes.func.isRequired
+    }).isRequired
 };
 
 
