@@ -17,8 +17,6 @@ public class Task
 
     public bool Priority { get; set; }
     public string Status { get; set; } = "progress";
-    
-    [JsonIgnore]
     public int? UserId { get; set; }
     [JsonIgnore]
     public int? ProjectId { get; set; }
