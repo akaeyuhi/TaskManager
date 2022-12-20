@@ -1,11 +1,11 @@
 import React, {createContext, useCallback, useEffect, useState} from 'react';
 import {Alert, Button, CardGroup, Spinner} from 'reactstrap';
 import {useParams} from 'react-router-dom';
-import UserCard from '../components/SingleProject/UserCard';
-import TaskCard from '../components/SingleProject/TaskCard';
-import DeleteModal from '../components/SingleProject/Modals/DeleteModal';
-import AddUserModal from '../components/SingleProject/Modals/AddUserModal';
-import CreateTaskModal from '../components/SingleProject/Modals/CreateTaskModal';
+import UserCard from '../components/Cards/UserCard';
+import TaskCard from '../components/Cards/TaskCard';
+import DeleteModal from '../components/Modals/DeleteModal';
+import AddUserModal from '../components/Modals/AddUserModal';
+import CreateTaskModal from '../components/Modals/CreateTaskModal';
 export const ProjectContext = createContext(null);
 
 const SingleProject = () => {

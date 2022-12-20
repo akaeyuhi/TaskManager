@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {Alert, Spinner} from 'reactstrap';
-import ProjectCard from '../components/Cards/ProjectCard';
+import UserCard from '../components/Users/UserCard';
 const Projects = () => {
-    const [projects, setProjects] = useState(null);
+    const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const fetchData = async () => {
         try {
-            const response = await fetch('api/Project/');
+            const response = await fetch('api/User/');
             const json = await response.json();
-            setProjects(json);
+            setUsers(json);
             setLoading(false);
         } catch (e) {
             setLoading(false);
@@ -25,12 +25,12 @@ const Projects = () => {
     else if(error) return <Alert color="danger">{error}</Alert>;
     else return (
         <div className="container">
-            <h1>Projects page</h1>
+            <h1>Users page</h1>
             <div className="flex mt-6">
-                {projects.length ?
-                    projects.map((project, idx) => <ProjectCard key={idx} project={project} />) :
+                {users.length ?
+                    users.map((project, idx) => <UserCard key={idx} project={project} />) :
                     <Alert color="primary">
-                                No projects yet...
+                            No users yet...
                     </Alert>
                 }
             </div>

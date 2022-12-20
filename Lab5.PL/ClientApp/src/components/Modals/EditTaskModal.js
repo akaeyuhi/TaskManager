@@ -1,23 +1,23 @@
 import React, {useCallback, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
-import {ProjectContext} from '../../../Pages/SingleProject';
-import {useParams} from 'react-router-dom';
+import {ProjectContext} from '../../Pages/SingleProject';
 
-function CreateTaskModal({toggle, modal}) {
+function EditTaskModal({task, toggle, modal}) {
     const {project, setProject} = useContext(ProjectContext);
-    const id = useParams().id;
 
     let formData = {
-        taskName: '',
-        description: '',
-        priority: false,
-        status: ''
+        taskName: task.name,
+        description: task.description,
+        priority: task.priority,
+        status: task.status
     };
 
-    const afterReRender = (newTask) => {
-        const newTasks = [...project.tasks];
-        newTasks.push(newTask);
+    const afterReRender = (dto) => {
+        const newTasks = project.tasks.map(item => item.id === task.id ? {
+            ...task,
+            ...dto
+        }: item);
         setProject((prevProject) =>({
             ...prevProject,
             tasks: newTasks
@@ -27,30 +27,21 @@ function CreateTaskModal({toggle, modal}) {
 
     const submitHandler = useCallback(async (event) => {
         event.preventDefault();
-        const newTask = {
+        const dto = {
             name: formData.taskName,
             description: formData.description,
             priority: formData.priority,
             status: formData.status
         };
         try {
-
-            const response = await fetch('api/Task/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newTask)
-            });
-            const json = await response.json();
-            await fetch(`api/Project/addTask/${id}`, {
+            await fetch(`api/Task/${task.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({taskId: json.id})
+                body: JSON.stringify(dto)
             });
-            afterReRender(newTask);
+            afterReRender(dto);
         } catch (e) {
             console.error(e);
         }
@@ -66,7 +57,7 @@ function CreateTaskModal({toggle, modal}) {
 
     return (
         <Modal isOpen={modal} toggle={toggle}>
-            <ModalHeader toggle={toggle}>Create task</ModalHeader>
+            <ModalHeader toggle={toggle}>Edit user</ModalHeader>
             <ModalBody>
                 <Form onSubmit={(event) => submitHandler(event)}>
                     <FormGroup floating>
@@ -76,6 +67,7 @@ function CreateTaskModal({toggle, modal}) {
                             placeholder="New task name"
                             type="text"
                             onChange={(e) => handleChange(e)}
+                            defaultValue={task.name}
                         />
                         <Label for="name">Task name</Label>
                     </FormGroup>
@@ -86,7 +78,7 @@ function CreateTaskModal({toggle, modal}) {
                             placeholder="New description"
                             type="text"
                             onChange={(e) => handleChange(e)}
-
+                            defaultValue={task.description}
                         />
                         <Label for="name">Description</Label>
                     </FormGroup>
@@ -94,7 +86,7 @@ function CreateTaskModal({toggle, modal}) {
                         name="priority"
                         type="checkbox"
                         onChange={(e) => handleChange(e)}
-                    />
+                        defaultChecked={task.priority} />
                     <Label check for="priority"> Priority</Label><br/>
                     <Label for="description" className="mt-2">Status</Label>
                     <Input
@@ -103,6 +95,7 @@ function CreateTaskModal({toggle, modal}) {
                         placeholder="New status"
                         type="select"
                         onChange={(e) => handleChange(e)}
+                        defaultValue={task.status}
                     >
                         <option value="created">created</option>
                         <option value="in progress">in progress</option>
@@ -124,9 +117,18 @@ function CreateTaskModal({toggle, modal}) {
     );
 }
 
-CreateTaskModal.propTypes = {
+EditTaskModal.propTypes = {
+
+    task: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        description: PropTypes.string,
+        priority: PropTypes.bool,
+        status: PropTypes.string,
+        userId: PropTypes.number
+    }),
     toggle: PropTypes.func,
     modal: PropTypes.bool
 };
 
-export default CreateTaskModal;
+export default EditTaskModal;

@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Alert, Button, Form, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Spinner} from 'reactstrap';
-import {ProjectContext} from '../../../Pages/SingleProject';
+import {ProjectContext} from '../../Pages/SingleProject';
 import {useParams} from 'react-router-dom';
 
 function EditUserModal({toggle, modal}) {

@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {Button, Card, CardBody, CardLink, CardText, CardTitle} from 'reactstrap';
 import PropTypes from 'prop-types';
-import EditUserModal from './Modals/EditUserModal';
+import EditUserModal from '../Modals/EditUserModal';
 
 const UserCard = ({ user, callback }) => {
     const [modal, setModal] = useState(false);
