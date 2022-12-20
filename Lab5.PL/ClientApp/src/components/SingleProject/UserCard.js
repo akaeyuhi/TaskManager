@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {Button, Card, CardBody, CardLink, CardText, CardTitle} from 'reactstrap';
 import PropTypes from 'prop-types';
+import EditUserModal from './EditUserModal';
 
 const UserCard = ({ user, callback }) => {
+    const [modal, setModal] = useState(false);
+    const toggle = useCallback(() => setModal(prev => !prev), [modal]);
     return (
         <Card>
             <CardBody>
@@ -24,7 +27,7 @@ const UserCard = ({ user, callback }) => {
                                 To user
                         </Button>
                     </CardLink>
-                    <Button color="info" onClick={() => ''}>
+                    <Button color="info" onClick={() => toggle()}>
                         Edit user
                     </Button>
                     <Button color="danger" onClick={() => callback('user', user.id)}>
@@ -33,6 +36,7 @@ const UserCard = ({ user, callback }) => {
                 </div>
 
             </CardBody>
+            <EditUserModal toggle={toggle} modal={modal} currentUser={user}/>
         </Card>
     );
 };
