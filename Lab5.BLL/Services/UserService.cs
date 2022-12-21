@@ -140,9 +140,8 @@ public class UserService : IUserService
     {
         try
         {
-            user.Name = userDto.Name != "" ? userDto.Name : user.Name;
+            user.Name = userDto.Name != user.Name ? userDto.Name : user.Name;
             user.Busyness = userDto.Busyness != user.Busyness ? userDto.Busyness : user.Busyness;
-
             _data.Users.Update(user);
             _data.Save();
         }
@@ -158,7 +157,7 @@ public class UserService : IUserService
         if (user == null) throw new UserServiceException("Invalid user id");
         try
         {
-            user.Name = userDto.Name != "" ? userDto.Name : user.Name;
+            user.Name = userDto.Name != user.Name ? userDto.Name : user.Name;
             user.Busyness = userDto.Busyness != user.Busyness ? userDto.Busyness : user.Busyness;
             _data.Users.Update(user);
             _data.Save();

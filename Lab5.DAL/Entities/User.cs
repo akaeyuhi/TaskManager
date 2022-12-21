@@ -14,7 +14,5 @@ public class User
     public Task? Task { get; set; }
 
     public bool Busyness { get; set; }
-
-    [JsonIgnore]
     public int? ProjectId { get; set; }
 }

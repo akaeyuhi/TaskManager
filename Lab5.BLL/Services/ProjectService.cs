@@ -170,6 +170,12 @@ public class ProjectService: IProjectService
         try
         {
             project.Users.Remove(user);
+            if (user.Task != null)
+            {
+                user.Task = null;
+                user.Busyness = false;
+                _data.Users.Update(user);
+            }
             _data.Projects.Update(project);
             _data.Save();
         }
@@ -183,9 +189,17 @@ public class ProjectService: IProjectService
     {
         var project = GetProjectById(projectId);
         if (project == null) throw new ProjectServiceException("Invalid project id");
+        var user = project.Users.FirstOrDefault(user => user.Task?.Id == task.Id);
         try
         {
             project.Tasks.Remove(task);
+            if (user != null)
+            {
+                user.Task = null;
+                user.Busyness = false;
+                _data.Users.Update(user);
+            }
+
             _data.Projects.Update(project);
             _data.Save();
         }
