@@ -12,6 +12,15 @@ code {
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
+    margin-bottom: 1em;
+}
+
+
 html {
     overflow: auto !important;
 }
