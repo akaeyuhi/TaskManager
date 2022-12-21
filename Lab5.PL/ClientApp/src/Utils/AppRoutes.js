@@ -3,6 +3,7 @@ import {Home} from '../Pages/Home';
 import Projects from '../Pages/Projects';
 import SingleProject from '../Pages/SingleProject';
 import Users from '../Pages/Users';
+import Tasks from '../Pages/Tasks';
 
 const AppRoutes = [
     {
@@ -21,6 +22,10 @@ const AppRoutes = [
     {
         path: '/users',
         element: <Users/>
+    },
+    {
+        path: '/tasks',
+        element: <Tasks/>
     },
 ];
 
