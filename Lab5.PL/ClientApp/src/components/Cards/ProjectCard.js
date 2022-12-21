@@ -1,8 +1,33 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Card, CardBody, CardLink, CardText, CardTitle} from 'reactstrap';
+import {Button, Card, CardBody, CardText, CardTitle, Form, Input} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 const ProjectCard = ({project, callback}) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [projectName, setProjectName] = useState(project.projectName);
+    const form = useRef(null);
+
+    const onKeyPressHandler = (event) => {
+        if(event.key === 'Enter') form.current.submit();
+    };
+
+    const submitHandler = async (event) => {
+        event.preventDefault();
+        try {
+            await fetch(`api/Project/${project.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({projectName})
+            });
+            setIsEditing(false);
+        } catch(e) {
+            console.error(e);
+        }
+    };
+
     return (
         <Card
             style={{
@@ -11,7 +36,26 @@ const ProjectCard = ({project, callback}) => {
         >
             <CardBody>
                 <CardTitle tag="h5">
-                    {project.projectName}
+                    {
+                        isEditing ? <Form
+                            onKeyDown={() => onKeyPressHandler()}
+                            onSubmit={async (event) => await submitHandler(event)}
+                            ref={form}>
+                            <Input
+                                id="name"
+                                name="projectName"
+                                type="text"
+                                defaultValue={project.projectName}
+                                onChange={(event) => setProjectName(event.target.value)}/>
+                        </Form> : <>{projectName}</>
+                    }
+                    <button style={{
+                        display: 'inline',
+                        background: 'none',
+                        border: 'none',
+                        color: 'primary'
+                    }} onClick={() => setIsEditing(prevState => !prevState)}>Edit</button>
+
                 </CardTitle>
                 <CardText>
                 Total users: {project.users.length}
@@ -20,11 +64,11 @@ const ProjectCard = ({project, callback}) => {
                 Total tasks: {project.tasks.length}
                 </CardText>
                 <div className="d-flex justify-content-between">
-                    <CardLink href={`project/${project.id}`} className="primary">
+                    <Link to={`../project/${project.id}`} className="primary">
                         <Button color="primary">
                             To project
                         </Button>
-                    </CardLink>
+                    </Link>
                     <Button color="danger" onClick={callback}>
                         Delete
                     </Button>
