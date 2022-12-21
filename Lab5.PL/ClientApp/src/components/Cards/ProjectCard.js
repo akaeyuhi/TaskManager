@@ -1,10 +1,17 @@
-import React, {useRef, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Card, CardBody, CardText, CardTitle, Form, Input} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import DeleteProjectModal from '../Modals/DeleteProjectModal';
 
-const ProjectCard = ({project, callback}) => {
+const ProjectCard = ({project}) => {
     const [isEditing, setIsEditing] = useState(false);
+    const [modal, setModal] = useState(false);
+    const toggle = useCallback(
+        () => setModal(prevState => !prevState),
+        [modal],
+    );
+
     const [projectName, setProjectName] = useState(project.projectName);
     const form = useRef(null);
 
@@ -45,7 +52,7 @@ const ProjectCard = ({project, callback}) => {
                                 id="name"
                                 name="projectName"
                                 type="text"
-                                defaultValue={project.projectName}
+                                defaultValue={projectName}
                                 onChange={(event) => setProjectName(event.target.value)}/>
                         </Form> : <>{projectName}</>
                     }
@@ -69,11 +76,11 @@ const ProjectCard = ({project, callback}) => {
                             To project
                         </Button>
                     </Link>
-                    <Button color="danger" onClick={callback}>
+                    <Button color="danger" onClick={() => toggle()}>
                         Delete
                     </Button>
                 </div>
-
+                <DeleteProjectModal modal={modal} toggle={toggle} project={project}/>
             </CardBody>
         </Card>
     );
@@ -85,8 +92,7 @@ ProjectCard.propTypes = {
         projectName: PropTypes.string,
         users: PropTypes.array,
         tasks: PropTypes.array
-    }).isRequired,
-    callback: PropTypes.func.isRequired
+    }).isRequired
 };
 
 export default ProjectCard;
