@@ -1,61 +1,73 @@
 import React, {useCallback, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
-import {ProjectsContext} from '../../Pages/Projects';
+import {UsersContext} from '../../../Pages/Users';
 
-function CreateProjectModal({toggle, modal}) {
-    const {projects, setProjects} = useContext(ProjectsContext);
+function CreateUserModal({toggle, modal}) {
+    const {users, setUsers} = useContext(UsersContext);
     let formData = {
-        projectName: ''
+        username: '',
+        busyness: false
     };
-    const afterReRender = (newProject) => {
-        const newProjects = [...projects];
-        newProjects.push(newProject);
-        console.log(newProjects);
-        setProjects(newProjects);
+
+    const afterReRender = (newUser) => {
+        const newUsers = [...users];
+        newUsers.push(newUser);
+        console.log(newUsers);
+        setUsers(newUsers);
         toggle();
     };
 
     const submitHandler = useCallback(async (event) => {
         event.preventDefault();
         const dto = {
-            projectName: formData.projectName,
+            name: formData.username,
+            busyness: formData.busyness,
+            task: null
         };
         try {
-            const newProject = await fetch('api/Project/', {
+            await fetch('api/User/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(dto)
             });
-            afterReRender(await newProject.json());
+            afterReRender(dto);
         } catch (e) {
             console.error(e);
         }
     }, [formData]);
+
     const handleChange = (e) => {
         formData = {
             ...formData,
             [e.target.name]: e.target.value.trim(),
         };
+        formData.busyness = e.target.checked;
     };
+
 
     return (
         <Modal isOpen={modal} toggle={toggle}>
-            <ModalHeader toggle={toggle}>Create project</ModalHeader>
+            <ModalHeader toggle={toggle}>Create user</ModalHeader>
             <ModalBody>
                 <Form onSubmit={(event) => submitHandler(event)}>
                     <FormGroup floating>
                         <Input
                             id="name"
-                            name="projectName"
-                            placeholder="New project name"
+                            name="username"
+                            placeholder="User's name"
                             type="text"
                             onChange={(e) => handleChange(e)}
                         />
-                        <Label for="name">Project name</Label>
+                        <Label for="name">Name</Label>
                     </FormGroup>
+                    <Input id="busyness"
+                        name="busyness"
+                        type="checkbox"
+                        onChange={(e) => handleChange(e)}/>
+                    <Label check for="busyness"> Busyness</Label><br/>
                     <Button color="primary" className="mt-4" type="submit">
                         Submit
                     </Button>
@@ -72,9 +84,9 @@ function CreateProjectModal({toggle, modal}) {
     );
 }
 
-CreateProjectModal.propTypes = {
+CreateUserModal.propTypes = {
     toggle: PropTypes.func,
     modal: PropTypes.bool
 };
 
-export default CreateProjectModal;
+export default CreateUserModal;

@@ -2,10 +2,10 @@ import React, {createContext, useCallback, useEffect, useState} from 'react';
 import {Alert, Button, CardGroup, Spinner} from 'reactstrap';
 import {useParams} from 'react-router-dom';
 import ProjectUserCard from '../components/Cards/ProjectUserCard';
-import TaskCard from '../components/Cards/TaskCard';
-import DeleteFromProjectModal from '../components/Modals/DeleteFromProjectModal';
-import AddUserModal from '../components/Modals/AddUserModal';
-import CreateTaskModal from '../components/Modals/CreateTaskModal';
+import ProjectTaskCard from '../components/Cards/ProjectTaskCard';
+import DeleteFromProjectModal from '../components/Modals/Delete/DeleteFromProjectModal';
+import AddUserModal from '../components/Modals/Add/AddUserModal';
+import CreateTaskModal from '../components/Modals/Create/CreateTaskModal';
 export const ProjectContext = createContext(null);
 
 const SingleProject = () => {
@@ -95,7 +95,7 @@ const SingleProject = () => {
                 <CardGroup>
                     {
                         project.tasks.length ?
-                            project.tasks.map((task, idx) => <TaskCard task={task} key={idx} callback={deleteCallback}/>) :
+                            project.tasks.map((task, idx) => <ProjectTaskCard task={task} key={idx} callback={deleteCallback}/>) :
                             <Alert color="primary">
                                 There is no tasks.
                             </Alert>

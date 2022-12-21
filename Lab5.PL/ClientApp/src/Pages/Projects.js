@@ -1,7 +1,7 @@
 import React, {createContext, useCallback, useEffect, useState} from 'react';
 import {Alert, Button, Spinner} from 'reactstrap';
 import ProjectCard from '../components/Cards/ProjectCard';
-import CreateProjectModal from '../components/Modals/CreateProjectModal';
+import CreateProjectModal from '../components/Modals/Create/CreateProjectModal';
 
 export const ProjectsContext = createContext(null);
 

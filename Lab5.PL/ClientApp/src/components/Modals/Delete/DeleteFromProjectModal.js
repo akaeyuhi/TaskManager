@@ -2,7 +2,7 @@ import React, {useCallback, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {useParams} from 'react-router-dom';
-import {ProjectContext} from '../../Pages/SingleProject';
+import {ProjectContext} from '../../../Pages/SingleProject';
 
 
 const DeleteFromProjectModal = ({ isOpen, toggleFunc, deleteObject }) => {

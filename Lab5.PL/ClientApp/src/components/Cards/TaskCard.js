@@ -1,9 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Card, CardBody, CardSubtitle, CardText, CardTitle} from 'reactstrap';
-import EditTaskModal from '../Modals/EditTaskModal';
-
-function TaskCard({ task, callback }) {
+function TaskCard({ task }) {
     const [modal, setModal] = useState(false);
     const toggle = useCallback(() => setModal(prev => !prev), [modal]);
     return (
@@ -28,16 +26,11 @@ function TaskCard({ task, callback }) {
                 <CardText>
                     {task.description}
                 </CardText>
-                <div className="d-flex justify-content-between">
-                    <Button color="info" onClick={() => toggle()}>
-                        Edit task
-                    </Button>
-                    <Button color="danger" onClick={() => callback('task', task.id)}>
-                        Delete
-                    </Button>
-                </div>
+                <Button color="danger" onClick={() => toggle()}>
+                    Delete
+                </Button>
             </CardBody>
-            <EditTaskModal task={task} modal={modal} toggle={toggle} />
+
         </Card>
     );
 }
@@ -50,7 +43,6 @@ TaskCard.propTypes = {
         priority: PropTypes.bool,
         status: PropTypes.string,
     }).isRequired,
-    callback: PropTypes.func.isRequired
 };
 
 export default TaskCard;

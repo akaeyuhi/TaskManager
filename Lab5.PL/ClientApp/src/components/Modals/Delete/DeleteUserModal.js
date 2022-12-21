@@ -1,7 +1,7 @@
 import React, {useCallback, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
-import {UsersContext} from '../../Pages/Users';
+import {UsersContext} from '../../../Pages/Users';
 
 const DeleteUserModal = ({ modal, toggle, user }) => {
     const {users, setUsers} = useContext(UsersContext);

@@ -2,7 +2,7 @@ import React, {useCallback, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Card, CardBody, CardText, CardTitle, Form, Input} from 'reactstrap';
 import {Link} from 'react-router-dom';
-import DeleteProjectModal from '../Modals/DeleteProjectModal';
+import DeleteProjectModal from '../Modals/Delete/DeleteProjectModal';
 
 const ProjectCard = ({project}) => {
     const [isEditing, setIsEditing] = useState(false);

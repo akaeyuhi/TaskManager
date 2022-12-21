@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react';
 import {Button, Card, CardBody, CardText, CardTitle} from 'reactstrap';
 import PropTypes from 'prop-types';
-import DeleteUserModal from '../Modals/DeleteUserModal';
-import DeleteUserTaskModal from '../Modals/DeleteUserTaskModal';
+import DeleteUserModal from '../Modals/Delete/DeleteUserModal';
+import DeleteUserTaskModal from '../Modals/Delete/DeleteUserTaskModal';
 import {Link} from 'react-router-dom';
 
 const UserCard = ({ user }) => {

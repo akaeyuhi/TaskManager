@@ -1,7 +1,7 @@
 import React, {useCallback, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
-import {ProjectsContext} from '../../Pages/Projects';
+import {ProjectsContext} from '../../../Pages/Projects';
 
 const DeleteProjectModal = ({ modal, toggle, project }) => {
     const {projects, setProjects} = useContext(ProjectsContext);
