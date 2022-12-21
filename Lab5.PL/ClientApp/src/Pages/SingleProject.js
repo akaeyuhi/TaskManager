@@ -1,7 +1,7 @@
 import React, {createContext, useCallback, useEffect, useState} from 'react';
 import {Alert, Button, CardGroup, Spinner} from 'reactstrap';
 import {useParams} from 'react-router-dom';
-import UserCard from '../components/Cards/UserCard';
+import ProjectUserCard from '../components/Cards/ProjectUserCard';
 import TaskCard from '../components/Cards/TaskCard';
 import DeleteFromProjectModal from '../components/Modals/DeleteFromProjectModal';
 import AddUserModal from '../components/Modals/AddUserModal';
@@ -80,7 +80,7 @@ const SingleProject = () => {
                 <CardGroup>
                     {
                         project.users.length ?
-                            project.users.map((user, idx) => <UserCard user={user} key={idx} callback={deleteCallback} />) :
+                            project.users.map((user, idx) => <ProjectUserCard user={user} key={idx} callback={deleteCallback} />) :
                             <Alert color="primary">
                                 There is no users.
                             </Alert>
