@@ -40,11 +40,11 @@ const Projects = () => {
                         Create new project
                     </Button>
                 </div>
-                <div className="flex mt-6">
+                <div className="card-container mt-6">
                     {projects.length ?
                         projects.map((project, idx) => <ProjectCard key={idx} project={project} />) :
                         <Alert color="primary">
-                            No projects yet...
+                                No projects yet...
                         </Alert>
                     }
                 </div>

@@ -39,11 +39,11 @@ const Users = () => {
                         Create user
                     </Button>
                 </div>
-                <div className="flex mt-6">
+                <div className="card-container mt-6">
                     {users.length ?
                         users.map((user, idx) => <UserCard key={idx} user={user} />) :
                         <Alert color="primary">
-                            No users yet...
+                                No users yet...
                         </Alert>
                     }
                 </div>
