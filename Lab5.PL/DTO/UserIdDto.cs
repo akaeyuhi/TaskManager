@@ -2,5 +2,5 @@ namespace Lab5.PL.DTO;
 
 public class UserIdDto
 {
-    public int UserId { get; set; }
+    public int UserId { get; set; } = 0;
 }
