@@ -16,6 +16,6 @@ public class Project
     [StringLength(50, MinimumLength = 5, ErrorMessage = "Name must have length from 5 to 50 symbols")]
     public string ProjectName { get; set; } = "";
 
-    public ICollection<User> Users { get; }
-    public ICollection<Task> Tasks { get; }
+    public ICollection<User> Users { get; set; }
+    public ICollection<Task> Tasks { get; set;}
 }

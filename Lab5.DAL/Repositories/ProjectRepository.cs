@@ -2,6 +2,7 @@ using Lab5.DAL.EF;
 using Lab5.DAL.Entities;
 using Lab5.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Task = Lab5.DAL.Entities.Task;
 
 namespace Lab5.DAL.Repositories;
 
@@ -44,8 +45,15 @@ public class ProjectRepository : IRepository<Project>
 
     public void Delete(int itemId)
     {
-        var project = _context.Projects.Find(itemId);
-        if (project != null) _context.Projects.Remove(project);
+        var project = GetById(itemId);
+        if (project == null) return;
+        foreach (var user in project.Users)
+        {
+            user.Task = null;
+        }
+        project.Tasks.Clear();
+        project.Users.Clear();
+        _context.Projects.Remove(project);
     }
 
     public void Save()
