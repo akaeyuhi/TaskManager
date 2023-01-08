@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Lab5.DAL\Lab5.DAL.csproj" />
+        <ProjectReference Include="..\TaskManager.DAL\TaskManager.DAL.csproj" />
     </ItemGroup>
 
 </Project>

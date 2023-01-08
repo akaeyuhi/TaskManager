@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab5.DAL", "Lab5.DAL\Lab5.DAL.csproj", "{EA166240-B9FA-4269-B040-98F873430713}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.DAL", "TaskManager.DAL\TaskManager.DAL.csproj", "{EA166240-B9FA-4269-B040-98F873430713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab5.BLL", "Lab5.BLL\Lab5.BLL.csproj", "{45B58186-B3D9-4ACD-A206-DEC9892C2CF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.BLL", "TaskManager.BLL\TaskManager.BLL.csproj", "{45B58186-B3D9-4ACD-A206-DEC9892C2CF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab5.PL", "Lab5.PL\Lab5.PL.csproj", "{ED907F3D-A70B-4340-B489-6F49DA168BAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.PL", "TaskManager.PL\TaskManager.PL.csproj", "{ED907F3D-A70B-4340-B489-6F49DA168BAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

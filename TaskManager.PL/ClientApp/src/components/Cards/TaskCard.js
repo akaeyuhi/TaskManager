@@ -30,7 +30,7 @@ function TaskCard({ task }) {
                     {task.description}
                 </CardText>
                 <CardText>
-                    {task.projectId ? <Link to={`project/${task.projectId}`}>To project</Link> : <></>}
+                    {task.projectId ? <Link to={`/project/${task.projectId}`}>To project</Link> : <></>}
                 </CardText>
                 <Button color="danger" onClick={() => toggle()}>
                     Delete
