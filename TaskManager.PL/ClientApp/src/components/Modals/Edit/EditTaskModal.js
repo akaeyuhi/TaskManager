@@ -17,8 +17,8 @@ function EditTaskModal({task, toggle, modal}) {
         const newTasks = project.tasks.map(item => item.id === task.id ? {
             ...task,
             ...dto
-        }: item);
-        setProject((prevProject) =>({
+        } : item);
+        setProject((prevProject) => ({
             ...prevProject,
             tasks: newTasks
         }));
@@ -83,10 +83,10 @@ function EditTaskModal({task, toggle, modal}) {
                         <Label for="name">Description</Label>
                     </FormGroup>
                     <Input id="priority"
-                        name="priority"
-                        type="checkbox"
-                        onChange={(e) => handleChange(e)}
-                        defaultChecked={task.priority} />
+                           name="priority"
+                           type="checkbox"
+                           onChange={(e) => handleChange(e)}
+                           defaultChecked={task.priority}/>
                     <Label check for="priority"> Priority</Label><br/>
                     <Label for="description" className="mt-2">Status</Label>
                     <Input

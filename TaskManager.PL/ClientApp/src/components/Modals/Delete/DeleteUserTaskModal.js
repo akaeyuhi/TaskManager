@@ -1,7 +1,8 @@
 import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
-const DeleteUserTaskModal = ({ modal, toggle, user }) => {
+
+const DeleteUserTaskModal = ({modal, toggle, user}) => {
     const clearFromUser = () => {
         user.task = null;
         toggle();
@@ -55,7 +56,6 @@ DeleteUserTaskModal.propTypes = {
         })
     }),
 };
-
 
 
 export default DeleteUserTaskModal;

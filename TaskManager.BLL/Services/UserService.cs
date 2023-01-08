@@ -21,7 +21,7 @@ public class UserService : IUserService
         var user = new User
         {
             Name = userDto.Name,
-            Busyness = userDto.Busyness,
+            Busyness = userDto.Busyness
         };
         try
         {

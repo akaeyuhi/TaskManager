@@ -26,23 +26,23 @@ const Tasks = () => {
         fetchData().then();
     }, []);
 
-    if(loading) return <Spinner />;
-    else if(error) return <Alert color="danger">{error}</Alert>;
+    if (loading) return <Spinner/>;
+    else if (error) return <Alert color="danger">{error}</Alert>;
     else return (
-        <TasksContext.Provider value={{tasks, setTasks}}>
-            <div className="container">
-                <h1>Tasks page</h1>
-                <div className="mt-6 card-container">
-                    {tasks.length ?
-                        tasks.map((task, idx) => <TaskCard key={idx} task={task} />) :
-                        <Alert color="primary">
+            <TasksContext.Provider value={{tasks, setTasks}}>
+                <div className="container">
+                    <h1>Tasks page</h1>
+                    <div className="mt-6 card-container">
+                        {tasks.length ?
+                            tasks.map((task, idx) => <TaskCard key={idx} task={task}/>) :
+                            <Alert color="primary">
                                 No projects yet...
-                        </Alert>
-                    }
+                            </Alert>
+                        }
+                    </div>
                 </div>
-            </div>
-        </TasksContext.Provider>
-    );
+            </TasksContext.Provider>
+        );
 };
 
 export default Tasks;

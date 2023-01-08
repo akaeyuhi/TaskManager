@@ -3,7 +3,8 @@ import {useEffect, useState} from 'react';
 export const useFetch = (url, options = {}) => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
-    let abort = () => {};
+    let abort = () => {
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,5 +24,5 @@ export const useFetch = (url, options = {}) => {
             abort();
         };
     }, []);
-    return { response, error, abort };
+    return {response, error, abort};
 };

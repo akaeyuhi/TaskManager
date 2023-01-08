@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom';
 import {ProjectContext} from '../../../Pages/SingleProject';
 
 
-const DeleteFromProjectModal = ({ isOpen, toggleFunc, deleteObject }) => {
+const DeleteFromProjectModal = ({isOpen, toggleFunc, deleteObject}) => {
     const currentProjectId = useParams().id;
     const {project, setProject} = useContext(ProjectContext);
     const deleteData = useCallback(async (deleteObject) => {
@@ -26,7 +26,7 @@ const DeleteFromProjectModal = ({ isOpen, toggleFunc, deleteObject }) => {
     }, []);
     const afterDelete = useCallback(async () => {
         await deleteData(deleteObject);
-        if(deleteObject.deleteId !== null && deleteObject.deleteType !== '') {
+        if (deleteObject.deleteId !== null && deleteObject.deleteType !== '') {
             const type = deleteObject.deleteType + 's';
             const tempArray = project[type].filter(item => item.id !== deleteObject.deleteId);
             setProject({
@@ -62,7 +62,6 @@ DeleteFromProjectModal.propTypes = {
         deleteId: PropTypes.number
     }).isRequired
 };
-
 
 
 export default DeleteFromProjectModal;

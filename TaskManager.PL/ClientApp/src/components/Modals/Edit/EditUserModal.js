@@ -14,8 +14,8 @@ function EditUserModal({currentUser, toggle, modal}) {
         const newUsers = project.users.map(item => item.id === currentUser.id ? {
             ...currentUser,
             ...dto
-        }: item);
-        setProject((prevProject) =>({
+        } : item);
+        setProject((prevProject) => ({
             ...prevProject,
             users: newUsers
         }));
@@ -67,13 +67,13 @@ function EditUserModal({currentUser, toggle, modal}) {
                         <Label for="name">Name</Label>
                     </FormGroup>
                     <Input id="busyness"
-                        name="busyness"
-                        type="checkbox"
-                        onChange={(e) => handleChange(e)}
-                        defaultChecked={currentUser.busyness} />
+                           name="busyness"
+                           type="checkbox"
+                           onChange={(e) => handleChange(e)}
+                           defaultChecked={currentUser.busyness}/>
                     <Label check for="busyness"> Busyness</Label><br/>
                     <Button color="primary" className="mt-4" type="submit">
-                            Submit
+                        Submit
                     </Button>
                     {' '}
                 </Form>

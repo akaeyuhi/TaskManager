@@ -18,7 +18,7 @@ function CreateTaskModal({toggle, modal}) {
     const afterReRender = (newTask) => {
         const newTasks = [...project.tasks];
         newTasks.push(newTask);
-        setProject((prevProject) =>({
+        setProject((prevProject) => ({
             ...prevProject,
             tasks: newTasks
         }));
@@ -91,9 +91,9 @@ function CreateTaskModal({toggle, modal}) {
                         <Label for="name">Description</Label>
                     </FormGroup>
                     <Input id="priority"
-                        name="priority"
-                        type="checkbox"
-                        onChange={(e) => handleChange(e)}
+                           name="priority"
+                           type="checkbox"
+                           onChange={(e) => handleChange(e)}
                     />
                     <Label check for="priority"> Priority</Label><br/>
                     <Label for="description" className="mt-2">Status</Label>

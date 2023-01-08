@@ -28,30 +28,30 @@ const Users = () => {
         fetchData().then();
     }, []);
 
-    if(loading) return <Spinner />;
-    else if(error) return <Alert color="danger">{error}</Alert>;
+    if (loading) return <Spinner/>;
+    else if (error) return <Alert color="danger">{error}</Alert>;
     else return (
-        <UsersContext.Provider value={{users, setUsers}}>
-            <div className="container">
-                <div className="d-flex justify-content-between mb-2">
-                    <h2 className="mt-2">Users page</h2>
-                    <Button color="warning" className="h-75" onClick={toggleModal}>
-                        Create user
-                    </Button>
-                </div>
-                <div className="card-container mt-6">
-                    {users.length ?
-                        users.map((user, idx) => <UserCard key={idx} user={user} />) :
-                        <Alert color="primary">
+            <UsersContext.Provider value={{users, setUsers}}>
+                <div className="container">
+                    <div className="d-flex justify-content-between mb-2">
+                        <h2 className="mt-2">Users page</h2>
+                        <Button color="warning" className="h-75" onClick={toggleModal}>
+                            Create user
+                        </Button>
+                    </div>
+                    <div className="card-container mt-6">
+                        {users.length ?
+                            users.map((user, idx) => <UserCard key={idx} user={user}/>) :
+                            <Alert color="primary">
                                 No users yet...
-                        </Alert>
-                    }
+                            </Alert>
+                        }
+                    </div>
+                    <CreateUserModal modal={modal} toggle={toggleModal}/>
                 </div>
-                <CreateUserModal modal={modal} toggle={toggleModal}/>
-            </div>
-        </UsersContext.Provider>
+            </UsersContext.Provider>
 
-    );
+        );
 };
 
 export default Users;

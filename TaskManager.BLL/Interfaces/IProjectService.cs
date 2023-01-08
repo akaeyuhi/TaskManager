@@ -18,6 +18,6 @@ public interface IProjectService
     void ClearUsers(int projectId);
     void DeleteUser(int projectId, User user);
     void DeleteTask(int projectId, Task task);
-    
+
     void UpdateProject(int projectId, ProjectDto projectDto);
 }

@@ -34,7 +34,7 @@ function EditUserModal({toggle, modal}) {
     const afterReRender = (newUser) => {
         const newUsers = [...project.users];
         newUsers.push(newUser);
-        setProject((prevProject) =>({
+        setProject((prevProject) => ({
             ...prevProject,
             users: [...newUsers]
         }));
@@ -44,7 +44,7 @@ function EditUserModal({toggle, modal}) {
     const submitHandler = useCallback(async (event) => {
         event.preventDefault();
         const user = candidates.find(user => user.name === formData.newUserName);
-        if(formData.newUserName === '' && user === undefined) return toggle();
+        if (formData.newUserName === '' && user === undefined) return toggle();
         const dto = {
             userId: user.id
         };
@@ -68,39 +68,39 @@ function EditUserModal({toggle, modal}) {
         };
     };
 
-    if(loading) return <Modal><Spinner /></Modal>;
-    else if(error) return <Modal><Alert color="danger">{error}</Alert></Modal>;
+    if (loading) return <Modal><Spinner/></Modal>;
+    else if (error) return <Modal><Alert color="danger">{error}</Alert></Modal>;
     else return (
-        <Modal isOpen={modal} toggle={toggle}>
-            <ModalHeader toggle={toggle}>Edit user</ModalHeader>
-            <ModalBody>
-                <Form onSubmit={(event) => submitHandler(event)}>
-                    <Label for="newUserName">Select user to add</Label>
-                    <Input
-                        id="newUserName"
-                        name="newUserName"
-                        placeholder="newUser"
-                        type="select"
-                        onChange={(e) => handleChange(e)}
+            <Modal isOpen={modal} toggle={toggle}>
+                <ModalHeader toggle={toggle}>Edit user</ModalHeader>
+                <ModalBody>
+                    <Form onSubmit={(event) => submitHandler(event)}>
+                        <Label for="newUserName">Select user to add</Label>
+                        <Input
+                            id="newUserName"
+                            name="newUserName"
+                            placeholder="newUser"
+                            type="select"
+                            onChange={(e) => handleChange(e)}
 
-                    >
-                        <option value="Value">User</option>
-                        {candidates.map((user, idx) => <option value={user.name} key={idx}>{user.name}</option>)}
-                    </Input>
-                    <Button color="primary" className="mt-4" type="submit">
-                        Submit
-                    </Button>
+                        >
+                            <option value="Value">User</option>
+                            {candidates.map((user, idx) => <option value={user.name} key={idx}>{user.name}</option>)}
+                        </Input>
+                        <Button color="primary" className="mt-4" type="submit">
+                            Submit
+                        </Button>
+                        {' '}
+                    </Form>
+                </ModalBody>
+                <ModalFooter>
                     {' '}
-                </Form>
-            </ModalBody>
-            <ModalFooter>
-                {' '}
-                <Button color="secondary" onClick={toggle}>
-                    Cancel
-                </Button>
-            </ModalFooter>
-        </Modal>
-    );
+                    <Button color="secondary" onClick={toggle}>
+                        Cancel
+                    </Button>
+                </ModalFooter>
+            </Modal>
+        );
 }
 
 EditUserModal.propTypes = {

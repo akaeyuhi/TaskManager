@@ -3,7 +3,7 @@ import {Button, Card, CardBody, CardText, CardTitle} from 'reactstrap';
 import PropTypes from 'prop-types';
 import EditUserModal from '../Modals/Edit/EditUserModal';
 
-const ProjectUserCard = ({ user, callback }) => {
+const ProjectUserCard = ({user, callback}) => {
     const [modal, setModal] = useState(false);
     const toggle = useCallback(() => setModal(prev => !prev), [modal]);
     return (

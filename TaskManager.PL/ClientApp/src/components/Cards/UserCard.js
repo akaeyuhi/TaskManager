@@ -5,7 +5,7 @@ import DeleteUserModal from '../Modals/Delete/DeleteUserModal';
 import DeleteUserTaskModal from '../Modals/Delete/DeleteUserTaskModal';
 import {Link} from 'react-router-dom';
 
-const UserCard = ({ user }) => {
+const UserCard = ({user}) => {
     const [userModal, setUserModal] = useState(false);
     const toggleUser = useCallback(() => setUserModal(prev => !prev), [userModal]);
     const [taskModal, setTaskModal] = useState(false);
@@ -28,7 +28,7 @@ const UserCard = ({ user }) => {
                 <CardText>
                     {user.projectId ?
                         <Link to={`/project/${user.projectId}`}>
-                           To users project
+                            To users project
                         </Link> : 'User doesn\'t participate in project'}
                 </CardText>
                 <div className="d-flex justify-content-between">

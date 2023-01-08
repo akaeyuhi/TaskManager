@@ -29,29 +29,29 @@ const Projects = () => {
         fetchData().then();
     }, []);
 
-    if(loading) return <Spinner />;
-    else if(error) return <Alert color="danger">{error}</Alert>;
+    if (loading) return <Spinner/>;
+    else if (error) return <Alert color="danger">{error}</Alert>;
     else return (
-        <ProjectsContext.Provider value={{projects, setProjects}}>
-            <div className="container">
-                <div className="d-flex justify-content-between">
-                    <h1>Projects page</h1>
-                    <Button color="warning" className="h-75" onClick={toggle}>
-                        Create new project
-                    </Button>
-                </div>
-                <div className="card-container mt-6">
-                    {projects.length ?
-                        projects.map((project, idx) => <ProjectCard key={idx} project={project} />) :
-                        <Alert color="primary">
+            <ProjectsContext.Provider value={{projects, setProjects}}>
+                <div className="container">
+                    <div className="d-flex justify-content-between">
+                        <h1>Projects page</h1>
+                        <Button color="warning" className="h-75" onClick={toggle}>
+                            Create new project
+                        </Button>
+                    </div>
+                    <div className="card-container mt-6">
+                        {projects.length ?
+                            projects.map((project, idx) => <ProjectCard key={idx} project={project}/>) :
+                            <Alert color="primary">
                                 No projects yet...
-                        </Alert>
-                    }
+                            </Alert>
+                        }
+                    </div>
                 </div>
-            </div>
-            <CreateProjectModal modal={modal} toggle={toggle}/>
-        </ProjectsContext.Provider>
-    );
+                <CreateProjectModal modal={modal} toggle={toggle}/>
+            </ProjectsContext.Provider>
+        );
 };
 
 export default Projects;

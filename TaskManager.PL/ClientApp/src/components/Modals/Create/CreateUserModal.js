@@ -64,9 +64,9 @@ function CreateUserModal({toggle, modal}) {
                         <Label for="name">Name</Label>
                     </FormGroup>
                     <Input id="busyness"
-                        name="busyness"
-                        type="checkbox"
-                        onChange={(e) => handleChange(e)}/>
+                           name="busyness"
+                           type="checkbox"
+                           onChange={(e) => handleChange(e)}/>
                     <Label check for="busyness"> Busyness</Label><br/>
                     <Button color="primary" className="mt-4" type="submit">
                         Submit

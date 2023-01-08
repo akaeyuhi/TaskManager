@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {ProjectsContext} from '../../../Pages/Projects';
 
-const DeleteProjectModal = ({ modal, toggle, project }) => {
+const DeleteProjectModal = ({modal, toggle, project}) => {
     const {projects, setProjects} = useContext(ProjectsContext);
 
     const clearFromProject = () => {
@@ -54,7 +54,6 @@ DeleteProjectModal.propTypes = {
         tasks: PropTypes.array
     }),
 };
-
 
 
 export default DeleteProjectModal;

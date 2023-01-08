@@ -16,7 +16,7 @@ const ProjectCard = ({project}) => {
     const form = useRef(null);
 
     const onKeyPressHandler = (event) => {
-        if(event.key === 'Enter') form.current.submit();
+        if (event.key === 'Enter') form.current.submit();
     };
 
     const submitHandler = async (event) => {
@@ -30,7 +30,7 @@ const ProjectCard = ({project}) => {
                 body: JSON.stringify({projectName})
             });
             setIsEditing(false);
-        } catch(e) {
+        } catch (e) {
             console.error(e);
         }
     };
@@ -61,14 +61,15 @@ const ProjectCard = ({project}) => {
                         background: 'none',
                         border: 'none',
                         color: 'primary'
-                    }} onClick={() => setIsEditing(prevState => !prevState)}>Edit</button>
+                    }} onClick={() => setIsEditing(prevState => !prevState)}>Edit
+                    </button>
 
                 </CardTitle>
                 <CardText>
-                Total users: {project.users.length}
+                    Total users: {project.users.length}
                 </CardText>
                 <CardText>
-                Total tasks: {project.tasks.length}
+                    Total tasks: {project.tasks.length}
                 </CardText>
                 <div className="d-flex justify-content-between">
                     <Link to={`../project/${project.id}`} className="primary">

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {TasksContext} from '../../../Pages/Tasks';
 
-const DeleteTaskModal = ({ modal, toggle, task }) => {
+const DeleteTaskModal = ({modal, toggle, task}) => {
     const {tasks, setTasks} = useContext(TasksContext);
 
     const clearFromTasks = () => {
@@ -55,7 +55,6 @@ DeleteTaskModal.propTypes = {
         status: PropTypes.string,
     }).isRequired,
 };
-
 
 
 export default DeleteTaskModal;

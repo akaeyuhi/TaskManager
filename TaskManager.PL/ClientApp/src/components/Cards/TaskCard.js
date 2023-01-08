@@ -4,7 +4,7 @@ import {Button, Card, CardBody, CardSubtitle, CardText, CardTitle} from 'reactst
 import {Link} from 'react-router-dom';
 import DeleteTaskModal from '../Modals/Delete/DeleteTaskModal';
 
-function TaskCard({ task }) {
+function TaskCard({task}) {
     const [modal, setModal] = useState(false);
     const toggle = useCallback(() => setModal(prev => !prev), [modal]);
     return (

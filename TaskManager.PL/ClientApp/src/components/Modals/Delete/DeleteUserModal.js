@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {UsersContext} from '../../../Pages/Users';
 
-const DeleteUserModal = ({ modal, toggle, user }) => {
+const DeleteUserModal = ({modal, toggle, user}) => {
     const {users, setUsers} = useContext(UsersContext);
 
     const clearFromUsers = () => {
@@ -60,7 +60,6 @@ DeleteUserModal.propTypes = {
         })
     }),
 };
-
 
 
 export default DeleteUserModal;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Button, Card, CardBody, CardSubtitle, CardText, CardTitle} from 'reactstrap';
 import EditTaskModal from '../Modals/Edit/EditTaskModal';
 
-function ProjectTaskCard({ task, callback }) {
+function ProjectTaskCard({task, callback}) {
     const [modal, setModal] = useState(false);
     const toggle = useCallback(() => setModal(prev => !prev), [modal]);
     return (
@@ -37,7 +37,7 @@ function ProjectTaskCard({ task, callback }) {
                     </Button>
                 </div>
             </CardBody>
-            <EditTaskModal task={task} modal={modal} toggle={toggle} />
+            <EditTaskModal task={task} modal={modal} toggle={toggle}/>
         </Card>
     );
 }

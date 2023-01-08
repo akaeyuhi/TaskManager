@@ -1,6 +1,6 @@
 namespace Lab5.BLL.Infrastructure.Exceptions;
 
-public class ProjectServiceException: Exception
+public class ProjectServiceException : Exception
 {
     public ProjectServiceException()
     {

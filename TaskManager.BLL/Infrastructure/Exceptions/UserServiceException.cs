@@ -1,6 +1,6 @@
 namespace Lab5.BLL.Infrastructure.Exceptions;
 
-public class UserServiceException: Exception
+public class UserServiceException : Exception
 {
     public UserServiceException()
     {

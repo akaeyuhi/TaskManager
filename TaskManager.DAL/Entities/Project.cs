@@ -17,5 +17,5 @@ public class Project
     public string ProjectName { get; set; } = "";
 
     public ICollection<User> Users { get; set; }
-    public ICollection<Task> Tasks { get; set;}
+    public ICollection<Task> Tasks { get; set; }
 }

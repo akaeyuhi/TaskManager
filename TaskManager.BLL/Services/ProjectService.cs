@@ -7,7 +7,7 @@ using Task = Lab5.DAL.Entities.Task;
 
 namespace Lab5.BLL.Services;
 
-public class ProjectService: IProjectService
+public class ProjectService : IProjectService
 {
     private readonly IUnitOfWork _data;
 
@@ -15,12 +15,12 @@ public class ProjectService: IProjectService
     {
         _data = context;
     }
-    
+
     public Project CreateProject(ProjectDto projectDto)
     {
         var project = new Project
         {
-            ProjectName = projectDto.ProjectName,
+            ProjectName = projectDto.ProjectName
         };
         try
         {
@@ -51,10 +51,7 @@ public class ProjectService: IProjectService
         if (project == null) throw new ProjectServiceException("Invalid project id");
         try
         {
-            foreach (var user in users)
-            {
-                project.Users.Add(user);
-            }
+            foreach (var user in users) project.Users.Add(user);
 
             _data.Projects.Update(project);
             _data.Save();
@@ -63,7 +60,6 @@ public class ProjectService: IProjectService
         {
             throw new ProjectServiceException(ex.Message);
         }
-        
     }
 
     public void AddTasks(int projectId, IEnumerable<Task> tasks)
@@ -72,10 +68,7 @@ public class ProjectService: IProjectService
         if (project == null) throw new ProjectServiceException("Invalid project id");
         try
         {
-            foreach (var task in tasks)
-            {
-                project.Tasks.Add(task);
-            }
+            foreach (var task in tasks) project.Tasks.Add(task);
 
             _data.Projects.Update(project);
             _data.Save();
@@ -176,6 +169,7 @@ public class ProjectService: IProjectService
                 user.Busyness = false;
                 _data.Users.Update(user);
             }
+
             _data.Projects.Update(project);
             _data.Save();
         }
