@@ -1,4 +1,4 @@
-# Labs3-6
+# TaskManager
 ## Project Manager application for Modern .NET Web Technologies course
 
 ### Stack
